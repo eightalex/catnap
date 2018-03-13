@@ -1,17 +1,17 @@
 <?php
 
-require '../vendor/autoload.php';
+require '../src/core/Router.php';
+require '../src/core/Controller.php';
+require '../src/Controller/TestController.php';
 
-/* @var $router Bit55\Litero\Router */
-$router = Bit55\Litero\Router::fromGlobals();
+$router = App\core\Router::fromGlobals();
 
 $router->add('/', function () {
     echo 'Hello from Litero!';
 });
 
 $router->add([
-    '/first'       => 'Bit55\Litero\ExampleController@firstAction',
-    '/second/:any' => 'Bit55\Litero\ExampleController@secondAction',
+    '/test'       => 'App\TestController@testAction'
 ]);
 
 if ($router->isFound()) {

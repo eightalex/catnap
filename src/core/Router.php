@@ -1,27 +1,7 @@
 <?php
 
-/**
- * Extra light router and dispatcher for small web applications.
- * Small footprint, no overhead.
- *
- * @link      https://github.com/bit55/litero
- * @copyright Copyright (c) 2017 Eugene Dementyev.
- * @license   https://opensource.org/licenses/BSD-3-Clause
- *
- * Routes may contents exact or  wildcard rules.
- *
- * Wildcards example:
- * `/page/:seg` - any characters in one segment like `/page/qwerty` or `/page/123`;
- * `/page/:num` - digits only like `/page/123`;
- * `/page/:any` - any characters like `/page/qwerty` or `/page/qwerty/123`;
- *
- * Route handler may be any callable (function name, closure) or string with controller class name and action method.
- * Router instantiate controller and execute action method automatically.
- * Wildcard parameters will be passed as function params in handler.
- * Note if you using Composer, add your controller classes to autoloading.
- */
+namespace App\core;
 
-namespace Bit55\Litero;
 
 class Router
 {
