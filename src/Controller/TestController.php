@@ -13,8 +13,16 @@ class TestController extends Controller
     /**
      *
      */
-    public function testAction()
+    public function mainPage()
     {
-        $this->render('main/index');
+        echo $this->render('main/index');
+    }
+
+    /**
+     *
+     */
+    public function contactUs()
+    {
+        echo $this->render('contact-us/index');
     }
 }
