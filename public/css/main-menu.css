@@ -1,0 +1,31 @@
+@charset "UTF-8";
+.main-menu {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1; }
+  .main-menu__item:not(:last-child) {
+    margin-right: 20px; }
+  .main-menu__link {
+    display: flex;
+    padding: 10px 5px;
+    color: #111;
+    text-decoration: none;
+    font-size: 15px; }
+    .main-menu__link:visited {
+      color: #111; }
+    .main-menu__link:hover {
+      color: #999; }
+  @media (max-width: 520px) {
+    .main-menu {
+      flex-direction: column;
+      padding: 10px 10px 0;
+      border-bottom: none; }
+      .main-menu__link::before {
+        margin-right: 5px;
+        content: "—"; } }
+
+/*# sourceMappingURL=main-menu.css.map */
