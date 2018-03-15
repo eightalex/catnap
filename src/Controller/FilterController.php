@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\core\Controller;
+use Core\Controller;
 
 /**
  * Class FilterController
