@@ -26,7 +26,7 @@ abstract class Controller
      * @param array ...$props
      * @return bool|string
      */
-    protected function include_block($block_name, ...$props) {
+    public static function include_block($block_name, ...$props) {
         $block = file_get_contents(__DIR__ . "/../src/View/blocks/$block_name.html");
 
         if ($props) {
