@@ -1,5 +1,5 @@
 <header class="header">
-    <figure class="header__logo">
+    <a href="/" class="header__logo">
         <img src="/img/header/usleep_logo.jpg" alt="logo">
-    </figure>
+    </a>
 </header>

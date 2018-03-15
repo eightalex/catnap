@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="/css/page-title.css">
 </head>
 <body class="page">
-    <?= $this->include_block('header'); ?>
-    <?= $this->include_block('main-menu'); ?>
-    <?= $this->include_block('page-title', 'Постельное белье'); ?>
-    <?= $this->include_block('page-description',
+    <?php $this->renderBlock('header'); ?>
+    <?php $this->renderBlock('main-menu'); ?>
+    <?php $this->renderBlock('page-title', ['title' => 'Постельное белье']); ?>
+    <?php $this->renderBlock('page-description', ['text' =>
         'Здесь, в магазине Usleep, белье — одно из наших любимых волокон. Как и просто супер
         шить, льняная ткань имеет прекрасное земное ощущение, начиная с хрустящей корочки, но со временем смягчается с
-        мытьем и износом.'); ?>
-    <?= $this->include_block('gallery'); ?>
-    <?= $this->include_block('footer'); ?>
+        мытьем и износом.']); ?>
+    <?php $this->renderBlock('gallery'); ?>
+    <?php $this->renderBlock('footer'); ?>
 </body>
 </html>

@@ -15,7 +15,7 @@ class TestController extends Controller
      */
     public function mainPage()
     {
-        $this->render('main/index');
+        $this->renderPage('main');
     }
 
     /**
@@ -23,6 +23,6 @@ class TestController extends Controller
      */
     public function contactUs()
     {
-        $this->render('contact-us/index');
+        $this->renderPage('contact-us');
     }
 }
