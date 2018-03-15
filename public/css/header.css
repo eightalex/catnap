@@ -1,0 +1,13 @@
+.header {
+  padding: 20px 0 15px;
+  text-align: center; }
+  .header__logo {
+    display: inline-block;
+    margin: 0;
+    width: 74px;
+    height: 28px;
+    font-size: 30px; }
+    .header__logo img {
+      width: 100%; }
+
+/*# sourceMappingURL=header.css.map */

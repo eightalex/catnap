@@ -3,12 +3,14 @@
 require '../core/Router.php';
 require '../core/Controller.php';
 require '../src/Controller/TestController.php';
+require '../src/Controller/FilterController.php';
 
-$router = App\core\Router::fromGlobals();
+$router = Core\Router::fromGlobals();
 
 $router->add([
-    '/' => 'App\TestController@mainPage',
-    '/contact-us' => 'App\TestController@contactUs'
+    '/'             => 'App\TestController@mainPage',
+    '/contact-us'   => 'App\TestController@contactUs',
+    '/filter/:any'  => 'App\FilterController@filterAction'
 ]);
 
 if ($router->isFound()) {

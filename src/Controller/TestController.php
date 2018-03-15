@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\core\Controller;
+use Core\Controller;
 
 /**
  * Class TestController
@@ -15,7 +15,7 @@ class TestController extends Controller
      */
     public function mainPage()
     {
-        echo $this->render('main/index');
+        $this->render('main/index');
     }
 
     /**
@@ -23,6 +23,6 @@ class TestController extends Controller
      */
     public function contactUs()
     {
-        echo $this->render('contact-us/index');
+        $this->render('contact-us/index');
     }
 }

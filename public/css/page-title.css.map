@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAW;EACP,MAAM,EAAE,cAAc;EACtB,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,IAAI",
+"sources": ["page-title.sass"],
+"names": [],
+"file": "page-title.css"
+}
