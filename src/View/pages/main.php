@@ -1,12 +1,12 @@
 <?php $this->renderBlock('head', [
     'title' => 'Yousleep',
-    'styles' => '
-        <link rel="stylesheet" href="/css/gallery.css">
-        <link rel="stylesheet" href="/css/page.css">
-        <link rel="stylesheet" href="/css/main-menu.css">
-        <link rel="stylesheet" href="/css/page-description.css">
-        <link rel="stylesheet" href="/css/page-title.css">
-    '
+    'styles' => [
+        '/css/gallery.css',
+        '/css/page.css',
+        '/css/main-menu.css',
+        '/css/page-description.css',
+        '/css/page-title.css',
+    ]
 ]); ?>
 <?php $this->renderBlock('header'); ?>
 <?php $this->renderBlock('main-menu'); ?>
