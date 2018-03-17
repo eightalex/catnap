@@ -36,13 +36,12 @@ abstract class Controller
 
     /**
      * @param array $styles
-     * @return string
      */
     protected function renderStyles($styles = [])
     {
         foreach ($styles as $style)
         {
-            $this->renderBlock('_block/style', [
+            $this->renderBlock('head__link_stylesheet', [
                 'style' => $style
             ]);
         }
