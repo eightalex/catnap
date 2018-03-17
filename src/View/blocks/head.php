@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
 
-    <?= $styles ?>
+    <?php foreach ($styles as $style) : ?>
+        <link rel="stylesheet" href="<?= $style; ?>">
+    <?php endforeach; ?>
 </head>
 <body class="page">
