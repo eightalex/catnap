@@ -17,7 +17,8 @@ $router->add([
     '/contact-us'       => 'App\TestController@contactUs',
     '/filter/:any'      => 'App\FilterController@filterAction',
     '/test-router/:num' => 'App\TestController@testRequest',
-    '/test-entity'      => 'App\TestController@testEntity'
+    '/test-entity'      => 'App\TestController@testEntity',
+    '/item/:num'        => 'App\TestController@item'
 ]);
 
 if ($router->isFound()) {

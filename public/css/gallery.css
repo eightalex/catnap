@@ -11,7 +11,11 @@
     margin: 15px;
     display: flex;
     flex-direction: column;
-    width: calc(25% - 30px); }
+    width: calc(25% - 30px);
+    color: #111;
+    text-decoration: none; }
+    .gallery__item:hover {
+      opacity: 0.8; }
     @media (max-width: 1200px) {
       .gallery__item {
         width: calc(33.33% - 30px); } }
@@ -27,6 +31,7 @@
     .gallery__item img {
       width: 100%; }
   .gallery__info {
+    display: block;
     margin-top: 15px; }
   .gallery__title {
     display: block;
