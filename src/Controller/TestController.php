@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Test;
 use Core\Controller;
 use Core\Pull;
 
@@ -27,9 +28,25 @@ class TestController extends Controller
         $this->renderPage('contact-us');
     }
 
+    /**
+     *
+     */
     public function testRequest()
     {
         var_dump(Pull::get('router')->getParams());
         exit;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testEntity()
+    {
+        $testEntity = new Test();
+        $tests = $testEntity->findAll();
+
+        $this->renderPage('test-entity', [
+            'tests' => $tests
+        ]);
     }
 }
