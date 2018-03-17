@@ -11,11 +11,16 @@ abstract class Controller
 {
 
     /**
+     * @var Service
+     */
+    private $container;
+
+    /**
      * @param $file
      * @param array $data
      * @return mixed
      */
-    protected function renderPage($file, $data = [])
+    protected function renderPage($file, array $data = [])
     {
         extract($data);
         unset($data);
@@ -27,7 +32,7 @@ abstract class Controller
      * @param array $data
      * @return mixed
      */
-    protected function renderBlock($file, $data = [])
+    protected function renderBlock($file, array $data = [])
     {
         extract($data);
         unset($data);
@@ -37,7 +42,7 @@ abstract class Controller
     /**
      * @param array $styles
      */
-    protected function renderStyles($styles = [])
+    protected function renderStyles(array $styles = [])
     {
         foreach ($styles as $style)
         {
@@ -45,5 +50,17 @@ abstract class Controller
                 'style' => $style
             ]);
         }
+    }
+
+    /**
+     * @return Service
+     */
+    protected function getContainer()
+    {
+        if (!$this->container instanceof Service) {
+            $this->container = ServiceInjection::getService();
+        }
+
+        return $this->container;
     }
 }

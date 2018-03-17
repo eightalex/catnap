@@ -5,7 +5,7 @@ namespace App;
 use App\Model\Page;
 use App\Model\Test;
 use Core\Controller;
-use Core\Pool;
+use Core\Router;
 
 /**
  * Class PageController
@@ -55,7 +55,7 @@ class PageController extends Controller
      */
     public function testRequest()
     {
-        var_dump(Pool::get('router')->getParams());
+        var_dump($this->getContainer()->get(Router::class)->getParams());
         exit;
     }
 
