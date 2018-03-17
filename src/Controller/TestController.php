@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Page;
 use App\Model\Test;
 use Core\Controller;
 use Core\Pool;
@@ -13,11 +14,16 @@ class TestController extends Controller
 {
 
     /**
-     *
+     * @throws \Core\Exception\ModelException
      */
     public function mainPage()
     {
-        $this->renderPage('main');
+        $pageEntity = new Page();
+        $mainPage = $pageEntity->find(Page::MAIN_PAGE_ID);
+
+        $this->renderPage('main', [
+            'mainPage' => $mainPage
+        ]);
     }
 
     /**

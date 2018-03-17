@@ -8,6 +8,7 @@ require '../core/Exception/ModelException.php';
 require '../src/Controller/TestController.php';
 require '../src/Controller/FilterController.php';
 require '../src/Model/Test.php';
+require '../src/Model/Page.php';
 
 $router = Core\Router::fromGlobals();
 \Core\Pool::set('router', $router);

@@ -33,6 +33,27 @@ class Model
     }
 
     /**
+     * @param $id
+     * @return mixed
+     * @throws ModelException
+     */
+    public function find($id)
+    {
+        if ($this->connection->errorCode()) {
+            throw new ModelException(ModelException::CONNECTION_ERROR);
+        };
+
+        $table = $this->getEntityName();
+        $query = $this->connection->query("
+            SELECT * FROM `{$table}`
+            WHERE id = {$id}
+         ");
+        $data =  $query->fetchObject();
+
+        return $data;
+    }
+
+    /**
      * @return array
      * @throws \Exception
      */
