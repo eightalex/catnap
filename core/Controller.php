@@ -15,7 +15,8 @@ abstract class Controller
      * @param array $data
      * @return mixed
      */
-    protected function renderPage($file, $data = []) {
+    protected function renderPage($file, $data = [])
+    {
         extract($data);
         unset($data);
         return require_once(__DIR__ . "/../src/View/pages/{$file}.php");
@@ -26,9 +27,24 @@ abstract class Controller
      * @param array $data
      * @return mixed
      */
-    protected function renderBlock($file, $data = []) {
+    protected function renderBlock($file, $data = [])
+    {
         extract($data);
         unset($data);
         return require(__DIR__ . "/../src/View/blocks/{$file}.php");
+    }
+
+    /**
+     * @param array $styles
+     * @return string
+     */
+    protected function renderStyles($styles = [])
+    {
+        foreach ($styles as $style)
+        {
+            $this->renderBlock('_block/style', [
+                'style' => $style
+            ]);
+        }
     }
 }
