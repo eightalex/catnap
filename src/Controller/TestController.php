@@ -45,6 +45,14 @@ class TestController extends Controller
     /**
      *
      */
+    public function cart()
+    {
+        $this->renderPage('cart');
+    }
+
+    /**
+     *
+     */
     public function testRequest()
     {
         var_dump(Pool::get('router')->getParams());

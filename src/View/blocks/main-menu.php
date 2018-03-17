@@ -14,4 +14,7 @@
     <li class="main-menu__item">
         <a class="main-menu__link" href="/contact-us">Контакты</a>
     </li>
+    <li class="main-menu__item">
+        <a class="main-menu__link" href="/cart" data-counter="">Корзина</a>
+    </li>
 </menu>

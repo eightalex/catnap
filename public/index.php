@@ -16,6 +16,7 @@ $router = Core\Router::fromGlobals();
 $router->add([
     '/'                 => 'App\TestController@mainPage',
     '/contact-us'       => 'App\TestController@contactUs',
+    '/cart'             => 'App\TestController@cart',
     '/filter/:any'      => 'App\FilterController@filterAction',
     '/test-router/:num' => 'App\TestController@testRequest',
     '/test-entity'      => 'App\TestController@testEntity',
