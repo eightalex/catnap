@@ -10,11 +10,8 @@
 ]); ?>
 <?php $this->renderBlock('header'); ?>
 <?php $this->renderBlock('main-menu'); ?>
-<?php $this->renderBlock('page-title', ['title' => 'Постельное белье']); ?>
-<?php $this->renderBlock('page-description', ['text' =>
-    'Здесь, в магазине Usleep, белье — одно из наших любимых волокон. Как и просто супер
-    шить, льняная ткань имеет прекрасное земное ощущение, начиная с хрустящей корочки, но со временем смягчается с
-    мытьем и износом.']); ?>
+<?php $this->renderBlock('page-title', ['title' => $mainPage->title]); ?>
+<?php $this->renderBlock('page-description', ['text' => $mainPage->description]); ?>
 <?php $this->renderBlock('gallery'); ?>
 <?php $this->renderBlock('footer'); ?>
 <?php $this->renderBlock('bottom'); ?>
