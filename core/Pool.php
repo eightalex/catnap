@@ -6,7 +6,7 @@ namespace Core;
  * Class Pull
  * @package Core
  */
-abstract class Pull
+abstract class Pool
 {
 
     /**

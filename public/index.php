@@ -3,13 +3,14 @@
 require '../core/Router.php';
 require '../core/Model.php';
 require '../core/Controller.php';
-require '../core/Pull.php';
+require '../core/Pool.php';
+require '../core/Exception/ModelException.php';
 require '../src/Controller/TestController.php';
 require '../src/Controller/FilterController.php';
 require '../src/Model/Test.php';
 
 $router = Core\Router::fromGlobals();
-\Core\Pull::set('router', $router);
+\Core\Pool::set('router', $router);
 
 $router->add([
     '/'                 => 'App\TestController@mainPage',

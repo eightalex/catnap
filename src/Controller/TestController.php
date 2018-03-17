@@ -4,7 +4,7 @@ namespace App;
 
 use App\Model\Test;
 use Core\Controller;
-use Core\Pull;
+use Core\Pool;
 
 /**
  * Class TestController
@@ -33,7 +33,7 @@ class TestController extends Controller
      */
     public function testRequest()
     {
-        var_dump(Pull::get('router')->getParams());
+        var_dump(Pool::get('router')->getParams());
         exit;
     }
 

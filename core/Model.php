@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Core\Exception\ModelException;
 
 /**
  * Class Model
@@ -35,11 +36,12 @@ class Model
      * @return array
      * @throws \Exception
      */
-    public function findAll() {
-        if ($this->connection->errorCode())
-        {
-            throw new \Exception('File to connection to database');
+    public function findAll()
+    {
+        if ($this->connection->errorCode()) {
+            throw new ModelException(ModelException::CONNECTION_ERROR);
         };
+
         $table = $this->getEntityName();
         $query = $this->connection->query("
             SELECT * FROM `{$table}`
@@ -53,7 +55,8 @@ class Model
     /**
      * @return string
      */
-    private function getEntityName() {
+    private function getEntityName()
+    {
         $entity_name = strtolower(get_class($this));
         $entity_name = explode('\\', $entity_name);
 
