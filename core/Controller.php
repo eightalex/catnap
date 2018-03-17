@@ -41,6 +41,7 @@ abstract class Controller
 
     /**
      * @param array $styles
+     * @return null
      */
     protected function renderStyles(array $styles = [])
     {
