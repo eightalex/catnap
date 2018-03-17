@@ -8,9 +8,9 @@ use Core\Controller;
 use Core\Pool;
 
 /**
- * Class TestController
+ * Class PageController
  */
-class TestController extends Controller
+class PageController extends Controller
 {
 
     /**

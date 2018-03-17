@@ -5,7 +5,7 @@ namespace App\Model;
 use Core\Model;
 
 /**
- * Class Pages
+ * Class Page
  * @package App\Model
  */
 class Page extends Model
