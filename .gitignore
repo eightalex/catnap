@@ -6,3 +6,5 @@ nbproject
 phpunit.xml
 /vendor/
 .idea
+*.css
+*.map

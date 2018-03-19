@@ -1,3 +1,3 @@
 <footer class="footer">
-    Usleep. Since 2018
+    Yousleep. Since 2018
 </footer>

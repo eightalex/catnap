@@ -1,0 +1,61 @@
+.amount-switcher
+    display: flex
+    align-items: center
+    margin: 0
+    padding: 0
+    list-style: none
+
+    &__item
+
+        &_mh_m
+            margin-left: 10px
+            margin-right: 10px
+
+    &__operator
+        position: relative
+        padding: 2px
+        color: #2f77aa
+        width: 20px
+        height: 20px
+        border: none
+        background: none
+        cursor: pointer
+
+        &:focus
+            outline: none
+            box-shadow: 0 0 5px rgba(#2f77aa, 0.4)
+
+        &:hover
+            opacity: 0.7
+
+        &::before
+            position: absolute
+            top: 9px
+            left: 1px
+            width: 18px
+            height: 2px
+            background-color: currentColor
+            content: ''
+
+        &_plus
+
+            &::after
+                position: absolute
+                top: 1px
+                left: 9px
+                width: 2px
+                height: 18px
+                background-color: currentColor
+                content: ''
+
+    &__amount
+        width: 28px
+        height: 25px
+        font-size: 15px
+        text-align: center
+        border: 1px solid #ccc
+
+        &:focus
+            outline: none
+            border: 1px solid rgba(#2f77aa, 0.4)
+            box-shadow: 0 0 5px rgba(#2f77aa, 0.4)

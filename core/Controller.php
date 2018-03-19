@@ -53,6 +53,16 @@ abstract class Controller
         }
     }
 
+    protected function renderScripts(array $scripts = [])
+    {
+        foreach ($scripts as $script)
+        {
+            $this->renderBlock('bottom__script', [
+                'script' => $script
+            ]);
+        }
+    }
+
     /**
      * @return Service
      */

@@ -1,10 +1,16 @@
 <?php $this->renderBlock('head', [
-    'title' => 'Yousleep',
+    'title' => 'Cart — Yousleep',
     'styles' => [
-        '/css/gallery.css',
-        '/css/page.css',
-        '/css/main-menu.css',
-        '/css/page-description.css',
-        '/css/page-title.css',
+        '/css/cart.css',
+        '/css/amount-switcher.css'
+    ]
+]); ?>
+<?php $this->renderBlock('header'); ?>
+<?php $this->renderBlock('main-menu'); ?>
+<?php $this->renderBlock('cart'); ?>
+<?php $this->renderBlock('footer'); ?>
+<?php $this->renderBlock('bottom', [
+    'scripts' => [
+        '/js/amount-switcher.js'
     ]
 ]); ?>
