@@ -1,21 +1,31 @@
 var amountSwitcher = (function() {
+    var selector = {
+        minus: '.js-amount-switcher__minus',
+        amount: '.js-amount-switcher__amount',
+        plus: '.js-amount-switcher__plus'
+    };
+
     var elem = {
-        minus: document.querySelector('.js_amount-switcher__minus'),
-        amount: document.querySelector('.js_amount-switcher__amount'),
-        plus: document.querySelector('.js_amount-switcher__plus')
+        switchers: document.querySelectorAll('.js-amount-switcher')
     };
 
     var config = {
         minNumber: 1,
-        maxNumber: 90
+        maxNumber: 10
     };
 
-    function getAmount() {
-        return Number(elem.amount.value);
+    function getInput(target) {
+        return target.nodeName === 'INPUT'
+            ? target
+            : target.parentNode.parentNode.querySelector(selector.amount);
     }
 
-    function setAmount(newAmount) {
-        elem.amount.value = newAmount;
+    function getAmount(input) {
+        return Number(input.value);
+    }
+
+    function setAmount(input, newAmount) {
+        input.value = newAmount;
     }
 
     function validateAmount(number) {
@@ -23,7 +33,7 @@ var amountSwitcher = (function() {
             return false;
         }
 
-        if (number < config.minNumber &&
+        if (number < config.minNumber ||
             number > config.maxNumber) {
             return false;
         }
@@ -32,41 +42,45 @@ var amountSwitcher = (function() {
     }
 
     function handleChangeAmount() {
-        var currentAmount = getAmount();
+        var currentInput = getInput(this),
+            currentAmount = getAmount(currentInput);
 
         if (currentAmount < config.minNumber) {
-            setAmount(config.minNumber);
+            setAmount(currentInput, config.minNumber);
         } else if (currentAmount > config.maxNumber) {
-            setAmount(config.maxNumber);
+            setAmount(currentInput, config.maxNumber);
         }
     }
 
     function handleClickMinus() {
-        var currentAmount = getAmount();
+        var currentInput = getInput(this),
+            newAmount = getAmount(currentInput) - 1;
 
-        if (!validateAmount(currentAmount)) {
+        if (!validateAmount(newAmount)) {
             return;
         }
 
-        setAmount(--currentAmount);
+        setAmount(currentInput, newAmount);
     }
 
     function handleClickPlus() {
-        var currentAmount = getAmount();
+        var currentInput = getInput(this),
+            newAmount = getAmount(currentInput) + 1;
 
-        if (!validateAmount(currentAmount)) {
+        if (!validateAmount(newAmount)) {
             return;
         }
 
-        setAmount(++currentAmount);
+        setAmount(currentInput, newAmount);
     }
 
     return {
         init: function() {
-            // TODO add listener to all elems
-            elem.amount.addEventListener('change', handleChangeAmount);
-            elem.minus.addEventListener('click', handleClickMinus);
-            elem.plus.addEventListener('click', handleClickPlus);
+            elem.switchers.forEach(function(switcher) {
+                switcher.querySelector(selector.amount).addEventListener('change', handleChangeAmount);
+                switcher.querySelector(selector.minus).addEventListener('click', handleClickMinus);
+                switcher.querySelector(selector.plus).addEventListener('click', handleClickPlus);
+            });
         }
     }
 })();
