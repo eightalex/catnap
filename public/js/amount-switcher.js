@@ -7,7 +7,7 @@ var amountSwitcher = (function() {
 
     var config = {
         minNumber: 1,
-        maxNumber: 10
+        maxNumber: 90
     };
 
     function getAmount() {
@@ -23,11 +23,12 @@ var amountSwitcher = (function() {
             return false;
         }
 
-        if (number % 1 !== 0) {
+        if (number < config.minNumber &&
+            number > config.maxNumber) {
             return false;
         }
 
-        return true;
+        return number % 1 === 0;
     }
 
     function handleChangeAmount() {
@@ -35,9 +36,7 @@ var amountSwitcher = (function() {
 
         if (currentAmount < config.minNumber) {
             setAmount(config.minNumber);
-        }
-
-        if (currentAmount > config.maxNumber) {
+        } else if (currentAmount > config.maxNumber) {
             setAmount(config.maxNumber);
         }
     }
@@ -47,10 +46,6 @@ var amountSwitcher = (function() {
 
         if (!validateAmount(currentAmount)) {
             return;
-        }
-
-        if (currentAmount === config.minNumber) {
-            return false;
         }
 
         setAmount(--currentAmount);
@@ -63,15 +58,12 @@ var amountSwitcher = (function() {
             return;
         }
 
-        if (currentAmount === config.maxNumber) {
-            return false;
-        }
-
         setAmount(++currentAmount);
     }
 
     return {
         init: function() {
+            // TODO add listener to all elems
             elem.amount.addEventListener('change', handleChangeAmount);
             elem.minus.addEventListener('click', handleClickMinus);
             elem.plus.addEventListener('click', handleClickPlus);
