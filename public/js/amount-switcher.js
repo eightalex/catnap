@@ -1,12 +1,14 @@
 var amountSwitcher = (function() {
+
     var selector = {
+        switcher: '.js-amount-switcher',
         minus: '.js-amount-switcher__minus',
         amount: '.js-amount-switcher__amount',
         plus: '.js-amount-switcher__plus'
     };
 
     var elem = {
-        switchers: document.querySelectorAll('.js-amount-switcher')
+        switchers: document.querySelectorAll(selector.switcher)
     };
 
     var config = {
@@ -15,9 +17,11 @@ var amountSwitcher = (function() {
     };
 
     function getInput(target) {
-        return target.nodeName === 'INPUT'
-            ? target
-            : target.parentNode.parentNode.querySelector(selector.amount);
+        if (target.nodeName === 'INPUT') {
+            return target;
+        } else {
+            return target.closest(selector.switcher).querySelector(selector.amount);
+        }
     }
 
     function getAmount(input) {
@@ -26,6 +30,17 @@ var amountSwitcher = (function() {
 
     function setAmount(input, newAmount) {
         input.value = newAmount;
+    }
+
+    function dispatchAmount(currentInput, newAmount) {
+        var event = new CustomEvent('changeAmount', {
+            detail: {
+                'currentInput': currentInput,
+                'newAmount': newAmount
+            }
+        });
+
+        document.dispatchEvent(event);
     }
 
     function validateAmount(number) {
@@ -41,7 +56,7 @@ var amountSwitcher = (function() {
         return number % 1 === 0;
     }
 
-    function handleChangeAmount() {
+    function handleChangeAmount(event) {
         var currentInput = getInput(this),
             currentAmount = getAmount(currentInput);
 
@@ -50,6 +65,8 @@ var amountSwitcher = (function() {
         } else if (currentAmount > config.maxNumber) {
             setAmount(currentInput, config.maxNumber);
         }
+
+        dispatchAmount(currentInput, event.target.value);
     }
 
     function handleClickMinus() {
@@ -61,6 +78,7 @@ var amountSwitcher = (function() {
         }
 
         setAmount(currentInput, newAmount);
+        dispatchAmount(currentInput, newAmount);
     }
 
     function handleClickPlus() {
@@ -72,10 +90,13 @@ var amountSwitcher = (function() {
         }
 
         setAmount(currentInput, newAmount);
+        dispatchAmount(currentInput, newAmount);
     }
 
     return {
         init: function() {
+            // todo set config.minNumber to input.value
+
             elem.switchers.forEach(function(switcher) {
                 switcher.querySelector(selector.amount).addEventListener('change', handleChangeAmount);
                 switcher.querySelector(selector.minus).addEventListener('click', handleClickMinus);

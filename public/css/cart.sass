@@ -1,10 +1,11 @@
 .cart
     margin: 0 auto
     padding: 50px 0
-    max-width: 1024px
+    max-width: 850px
     list-style: none
 
     &__item
+        position: relative
         display: flex
         align-items: flex-start
 
@@ -12,45 +13,90 @@
             margin-bottom: 30px
 
     &__col
-
-        &:not(:last-child)
-            margin-right: 20px
+        margin-right: 20px
 
         &_as_c
             align-self: center
 
+        &_jc_c
+            justify-content: center
+
         &_ml_a
             margin-left: auto
 
+        &_maw_m
+            max-width: 370px
+
     &__img
         margin: 0
-        width: 90px
+        width: 130px
         font-size: 0
 
         img
             width: 100%
             height: 100%
 
-    &__controls
-        display: flex
-        flex-direction: column
-
     &__title
+        display: block
         max-width: 500px
         color: #2f77aa
-        font-size: 22px
+        font-size: 18px
         text-decoration: none
 
         &:hover
             opacity: 0.7
 
-    &__amount-switcher
-        margin-top: 20px
+    &__description
+        display: block
+        margin: 10px 0 0
 
     &__price
-        margin-top: 20px
+        display: block
+        margin-top: 5px
+        color: #a4a4a4
+        font-size: 12px
         font-style: normal
+        text-align: center
 
     &__summary
+        display: block
+        width: 80px
         font-weight: bold
         font-style: normal
+        text-align: right
+
+    &__remove
+        position: absolute
+        top: 0
+        right: 0
+        padding: 0
+        width: 15px
+        height: 15px
+        color: #2f77aa
+        outline: none
+        border: none
+        background: none
+        cursor: pointer
+
+        &:hover
+            opacity: 0.7
+
+        &:focus
+            outline: none
+            box-shadow: 0 0 5px rgba(#2f77aa, 0.4)
+
+        &::before,
+        &::after
+            position: absolute
+            top: 2px
+            left: 7px
+            width: 1px
+            height: 11px
+            background-color: currentColor
+            content: ''
+
+        &::before
+            transform: rotate(-45deg)
+
+        &::after
+            transform: rotate(45deg)

@@ -11,6 +11,7 @@
 <?php $this->renderBlock('footer'); ?>
 <?php $this->renderBlock('bottom', [
     'scripts' => [
+        '/js/cart.js',
         '/js/amount-switcher.js'
     ]
 ]); ?>

@@ -1,4 +1,4 @@
-<menu class="<?= $mix ?> amount-switcher js-amount-switcher">
+<menu class="amount-switcher js-amount-switcher">
     <li class="amount-switcher__item">
         <button class="amount-switcher__operator js-amount-switcher__minus"></button>
     </li>
