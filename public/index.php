@@ -12,6 +12,7 @@ require '../src/Controller/PageController.php';
 require '../src/Controller/FilterController.php';
 require '../src/Model/Test.php';
 require '../src/Model/Page.php';
+require '../src/Model/Items.php';
 
 /**
  * Class App

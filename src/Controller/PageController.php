@@ -4,6 +4,7 @@ namespace App;
 
 use App\Model\Page;
 use App\Model\Test;
+use App\Model\Items;
 use Core\Controller;
 use Core\Router;
 
@@ -15,14 +16,19 @@ class PageController extends Controller
 
     /**
      * @throws \Core\Exception\ModelException
+     * @throws \Exception
      */
     public function mainPage()
     {
         $pageEntity = new Page();
         $mainPage = $pageEntity->find(Page::MAIN_PAGE_ID);
 
+        $itemsEntity = new Items();
+        $items = $itemsEntity->findAll();
+
         $this->renderPage('main', [
-            'mainPage' => $mainPage
+            'mainPage' => $mainPage,
+            'items' => $items
         ]);
     }
 
