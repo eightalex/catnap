@@ -69,7 +69,7 @@ abstract class Controller
     protected function getContainer()
     {
         if (!$this->container instanceof Service) {
-            $this->container = ServiceInjection::getService();
+            $this->container = ContainerInjector::getContainer();
         }
 
         return $this->container;

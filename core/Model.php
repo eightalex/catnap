@@ -8,7 +8,7 @@ use Core\Exception\ModelException;
  * Class Model
  * @package Core
  */
-class Model
+abstract class Model
 {
 
     /**
@@ -33,6 +33,11 @@ class Model
     }
 
     /**
+     * @return string
+     */
+    abstract protected function getTableName();
+
+    /**
      * @param $id
      * @return mixed
      * @throws ModelException
@@ -43,7 +48,7 @@ class Model
             throw new ModelException(ModelException::CONNECTION_ERROR);
         };
 
-        $table = $this->getEntityName();
+        $table =$this->getTableName();
         $query = $this->connection->query("
             SELECT * FROM `{$table}`
             WHERE id = {$id}
@@ -63,7 +68,7 @@ class Model
             throw new ModelException(ModelException::CONNECTION_ERROR);
         };
 
-        $table = $this->getEntityName();
+        $table = $this->getTableName();
         $query = $this->connection->query("
             SELECT * FROM `{$table}`
             WHERE 1 = 1
@@ -71,17 +76,6 @@ class Model
         $data =  $query->fetchAll(\PDO::FETCH_OBJ);
 
         return $data;
-    }
-
-    /**
-     * @return string
-     */
-    private function getEntityName()
-    {
-        $entity_name = strtolower(get_class($this));
-        $entity_name = explode('\\', $entity_name);
-
-        return end($entity_name);
     }
 
     /**

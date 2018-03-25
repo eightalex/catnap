@@ -2,11 +2,9 @@
 
 namespace App;
 
-use App\Model\Page;
-use App\Model\Test;
-use App\Model\Items;
+use App\Model\ItemRepository;
+use App\Model\PageRepository;
 use Core\Controller;
-use Core\Router;
 
 /**
  * Class PageController
@@ -20,11 +18,11 @@ class PageController extends Controller
      */
     public function mainPage()
     {
-        $pageEntity = new Page();
-        $mainPage = $pageEntity->find(Page::MAIN_PAGE_ID);
+        $pageRepository = new PageRepository();
+        $mainPage = $pageRepository->find(PageRepository::MAIN_PAGE_ID);
 
-        $itemsEntity = new Items();
-        $items = $itemsEntity->findAll();
+        $itemRepository = new ItemRepository();
+        $items = $itemRepository->findAll();
 
         $this->renderPage('main', [
             'mainPage' => $mainPage,
@@ -54,27 +52,5 @@ class PageController extends Controller
     public function cart()
     {
         $this->renderPage('cart');
-    }
-
-    /**
-     *
-     */
-    public function testRequest()
-    {
-        var_dump($this->getContainer()->get(Router::class)->getParams());
-        exit;
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function testEntity()
-    {
-        $testEntity = new Test();
-        $tests = $testEntity->findAll();
-
-        $this->renderPage('test-entity', [
-            'tests' => $tests
-        ]);
     }
 }
