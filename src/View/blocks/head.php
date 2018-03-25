@@ -11,6 +11,6 @@
     <link rel="stylesheet" href="/css/page.css">
     <link rel="stylesheet" href="/css/footer.css">
 
-    <?php if ($styles) $this->renderStyles($styles); ?>
+    <?php if (isset($styles)) $this->renderStyles($styles); ?>
 </head>
 <body class="page">

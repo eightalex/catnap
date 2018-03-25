@@ -6,13 +6,12 @@ require '../core/Router.php';
 require '../core/Model.php';
 require '../core/Controller.php';
 require '../core/Service.php';
-require '../core/ServiceInjection.php';
+require '../core/ContainerInjector.php';
 require '../core/Exception/ModelException.php';
 require '../src/Controller/PageController.php';
 require '../src/Controller/FilterController.php';
-require '../src/Model/Test.php';
-require '../src/Model/Page.php';
-require '../src/Model/Items.php';
+require '../src/Model/PageRepository.php';
+require '../src/Model/ItemRepository.php';
 
 /**
  * Class App
@@ -36,8 +35,6 @@ class App
             '/contact-us'       => 'App\PageController@contactUs',
             '/cart'             => 'App\PageController@cart',
             '/filter/:any'      => 'App\FilterController@filterAction',
-            '/test-router/:num' => 'App\PageController@testRequest',
-            '/test-entity'      => 'App\PageController@testEntity',
             '/item/:num'        => 'App\PageController@item'
         ]);
     }
@@ -47,7 +44,7 @@ class App
      */
     private function initRouter(array $routing)
     {
-        $router = ServiceInjection::getService()->get(Router::class);
+        $router = ContainerInjector::getContainer()->get(Router::class);
         $router->add($routing);
 
         if ($router->isFound()) {
@@ -69,7 +66,7 @@ class App
     private function initService(array $services)
     {
         $serviceLocator = new Service();
-        ServiceInjection::setService($serviceLocator);
+        ContainerInjector::setContainer($serviceLocator);
 
         foreach ($services as $service => $params) {
             $serviceLocator->add($service, $params);
