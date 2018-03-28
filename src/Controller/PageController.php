@@ -39,11 +39,19 @@ class PageController extends Controller
     }
 
     /**
-     *
+     * @throws \Core\Exception\ModelException
      */
     public function item()
     {
-        $this->renderPage('item');
+
+        $uri = $_SERVER['REQUEST_URI'];
+        $uri_arr = explode('/', $uri);
+        $itemId = end($uri_arr);
+
+        $itemRepository = new ItemRepository();
+        $item = $itemRepository->find($itemId);
+
+        $this->renderPage('item', ['item' => $item]);
     }
 
     /**

@@ -19,6 +19,8 @@ class FilterController extends Controller
         // Example request: site.com/filter/key1/value1/key2/value2/key3/value3
         $request = array_merge($_REQUEST, $_SERVER);
 
+        var_dump($request);
+
         $this->renderPage('filter', [
             'request' => $request
         ]);
