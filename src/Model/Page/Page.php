@@ -4,6 +4,10 @@ namespace App\Model\Page;
 
 use Core\Model\Entity;
 
+/**
+ * Class Page
+ * @package App\Model\Page
+ */
 class Page extends Entity
 {
 
@@ -12,12 +16,18 @@ class Page extends Entity
      */
     const MAIN_PAGE_ID = 1;
 
-    protected $id;
-    protected $title;
-    protected $description;
+    /**
+     * @var string
+     */
+    public $title;
 
     /**
-     * @return mixed
+     * @var string
+     */
+    public $description;
+
+    /**
+     * @return string
      */
     public function getTitle()
     {
@@ -25,7 +35,7 @@ class Page extends Entity
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
     public function setTitle($title)
     {
@@ -33,7 +43,7 @@ class Page extends Entity
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
@@ -41,26 +51,10 @@ class Page extends Entity
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
     public function setDescription($description)
     {
         $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 }

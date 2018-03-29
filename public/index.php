@@ -2,11 +2,13 @@
 
 namespace Core;
 
-use Core\Router\Router;
+use Core\DataBase\DataBase;
+use Core\lib\Router;
 use Core\Service\ContainerInjector;
 use Core\Service\Service;
 
-require '../core/Router/Router.php';
+require '../core/lib/Router.php';
+require '../core/lib/rb-sqlite.php';
 require '../core/DataBase/DataBase.php';
 require '../core/Model/Entity.php';
 require '../core/Model/Repository.php';
@@ -14,10 +16,13 @@ require '../core/Controller/Controller.php';
 require '../core/Service/Service.php';
 require '../core/Service/ContainerInjector.php';
 require '../src/Controller/PageController.php';
+require '../src/Controller/OrderController.php';
 require '../src/Model/Page/Page.php';
 require '../src/Model/Page/PageRepository.php';
 require '../src/Model/Item/Item.php';
 require '../src/Model/Item/ItemRepository.php';
+require '../src/Model/Order/Order.php';
+require '../src/Model/Order/OrderRepository.php';
 
 /**
  * Class App
@@ -31,6 +36,8 @@ class App
      */
     public function init()
     {
+        \R::setup('sqlite:' . DataBase::getAbsolutePathToDatabase());
+
         $this->initService([
             Router::class => [
                 $this->getServiceUri(), $_SERVER['REQUEST_METHOD']
@@ -40,7 +47,8 @@ class App
             '/'                 => 'App\PageController@mainPage',
             '/contact-us'       => 'App\PageController@contactUs',
             '/cart'             => 'App\PageController@cart',
-            '/item/:num'        => 'App\PageController@item'
+            '/item/:num'        => 'App\PageController@item',
+            '/order/add/:any'   => 'App\OrderController@setOrder'
         ]);
     }
 

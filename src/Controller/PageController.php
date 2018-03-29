@@ -40,7 +40,7 @@ class PageController extends Controller
     }
 
     /**
-     * @throws \Core\Exception\ModelException
+     *
      */
     public function item()
     {
