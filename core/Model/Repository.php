@@ -2,8 +2,11 @@
 
 namespace Core\Model;
 
-use Core\DataBase\DataBase;
 
+/**
+ * Class Repository
+ * @package Core\Model
+ */
 abstract class Repository
 {
 
@@ -14,44 +17,33 @@ abstract class Repository
 
     /**
      * @param $id
-     * @return mixed
+     * @return \RedBeanPHP\OODBBean
      */
     public function find($id)
     {
-        $table_name = $this->getRepositoryTableName();
-        $query = DataBase::getConnection()->query("
-            SELECT * FROM `{$table_name}`
-            WHERE id = {$id}
-         ");
-        $data =  $query->fetchObject();
-
-        return $data;
+        return \R::load($this->getTableName(), $id);
     }
 
     /**
-     * @return array
+     * @return \RedBeanPHP\OODBBean[]
      */
     public function findAll()
     {
-        $table_name = $this->getRepositoryTableName();
-        $query = DataBase::getConnection()->query("
-            SELECT * FROM `{$table_name}`
-            WHERE 1 = 1
-         ");
-        $data =  $query->fetchAll(\PDO::FETCH_OBJ);
-
-        return $data;
+        return \R::findAll($this->getTableName());
     }
 
     /**
-     * @return string
+     * @param Entity $entity
+     * @return int|string
      */
-    protected function getRepositoryTableName()
+    public function flush(Entity $entity)
     {
-        $entity_name = strtolower(get_class($this));
-        $entity_name = explode('\\', $entity_name);
-        $entity_name = end($entity_name);
+        $model = \R::dispense($this->getTableName());
+        foreach ($entity as $key => $value)
+        {
+            $model->$key = $value;
+        }
 
-        return str_replace('repository', '', $entity_name);
+        return \R::store($model);
     }
 }
