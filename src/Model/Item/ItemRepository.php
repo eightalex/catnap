@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\Item;
 
-use Core\Model;
+use Core\Model\Repository;
 
 /**
  * Class Page
  * @package App\Model
  */
-class ItemRepository extends Model
+class ItemRepository extends Repository
 {
 
     /**
      * @return string
      */
-    protected function getTableName()
+    function getTableName()
     {
         return 'item';
     }

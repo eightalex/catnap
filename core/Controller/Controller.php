@@ -1,7 +1,9 @@
 <?php
 
-namespace Core;
+namespace Core\Controller;
 
+use Core\Service\ContainerInjector;
+use Core\Service\Service;
 
 /**
  * Class Controller
@@ -24,7 +26,7 @@ abstract class Controller
     {
         extract($data);
         unset($data);
-        return require_once(__DIR__ . "/../src/View/pages/{$file}.php");
+        return require_once(__DIR__ . "/../../src/View/pages/{$file}.php");
     }
 
     /**
@@ -36,7 +38,7 @@ abstract class Controller
     {
         extract($data);
         unset($data);
-        return require(__DIR__ . "/../src/View/blocks/{$file}.php");
+        return require(__DIR__ . "/../../src/View/blocks/{$file}.php");
     }
 
     /**

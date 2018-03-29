@@ -2,16 +2,22 @@
 
 namespace Core;
 
-require '../core/Router.php';
-require '../core/Model.php';
-require '../core/Controller.php';
-require '../core/Service.php';
-require '../core/ContainerInjector.php';
-require '../core/Exception/ModelException.php';
+use Core\Router\Router;
+use Core\Service\ContainerInjector;
+use Core\Service\Service;
+
+require '../core/Router/Router.php';
+require '../core/DataBase/DataBase.php';
+require '../core/Model/Entity.php';
+require '../core/Model/Repository.php';
+require '../core/Controller/Controller.php';
+require '../core/Service/Service.php';
+require '../core/Service/ContainerInjector.php';
 require '../src/Controller/PageController.php';
-require '../src/Controller/FilterController.php';
-require '../src/Model/PageRepository.php';
-require '../src/Model/ItemRepository.php';
+require '../src/Model/Page/Page.php';
+require '../src/Model/Page/PageRepository.php';
+require '../src/Model/Item/Item.php';
+require '../src/Model/Item/ItemRepository.php';
 
 /**
  * Class App
@@ -34,7 +40,6 @@ class App
             '/'                 => 'App\PageController@mainPage',
             '/contact-us'       => 'App\PageController@contactUs',
             '/cart'             => 'App\PageController@cart',
-            '/filter/:any'      => 'App\FilterController@filterAction',
             '/item/:num'        => 'App\PageController@item'
         ]);
     }
