@@ -10,7 +10,7 @@
             <img class="item__img" src="/img/item/1_4.jpg" alt="Фото <?= $item->name ?>">
         </div>
         <div class="item__right-side">
-            <button class="btn js-order-now">Купить</button>
+            <button class="btn js-order-now">Добавить в корзину</button>
             <p>
                 Комплект:
                 <br>Пододеяльник - 165х220 см

@@ -21,6 +21,8 @@ require '../src/Model/Page/Page.php';
 require '../src/Model/Page/PageRepository.php';
 require '../src/Model/Item/Item.php';
 require '../src/Model/Item/ItemRepository.php';
+require '../src/Model/BookedItem/BookedItem.php';
+require '../src/Model/BookedItem/BookedItemRepository.php';
 require '../src/Model/Order/Order.php';
 require '../src/Model/Order/OrderRepository.php';
 
@@ -43,12 +45,13 @@ class App
                 $this->getServiceUri(), $_SERVER['REQUEST_METHOD']
             ]
         ]);
+
         $this->initRouter([
             '/'                 => 'App\PageController@mainPage',
             '/contact-us'       => 'App\PageController@contactUs',
             '/cart'             => 'App\PageController@cart',
             '/item/:num'        => 'App\PageController@item',
-            '/order/add/:any'   => 'App\OrderController@setOrder'
+            '/order/add'        => 'App\OrderController@setOrder'
         ]);
     }
 

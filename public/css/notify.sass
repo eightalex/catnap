@@ -1,0 +1,32 @@
+.notify
+    display: none
+    position: fixed
+    right: 20px
+    bottom: 15px
+    z-index: 1
+    padding: 8px 14px 9px
+    font-size: 15px
+    color: #fff
+    background-color: #2f77aa
+    animation: show 300ms forwards
+
+    &_error
+        background-color: tomato
+
+    &_success
+        background-color: #2e9434
+
+    &_hide
+        animation-name: hide
+
+    @keyframes show
+        from
+            opacity: 0
+        to
+            opacity: 1
+
+    @keyframes hide
+        from
+            opacity: 1
+        to
+            opacity: 0

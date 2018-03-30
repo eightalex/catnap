@@ -25,10 +25,10 @@ class Order extends Entity
     }
 
     /**
-     * @param string $order
+     *
      */
-    public function setOrder($order)
+    public function setOrder()
     {
-        $this->order = $order;
+        $this->order = '';
     }
 }

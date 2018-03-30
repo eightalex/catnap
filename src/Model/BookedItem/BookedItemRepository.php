@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Model\Item;
+namespace App\Model\BookedItem;
 
 use Core\Model\Repository;
 
 /**
- * Class ItemRepository
+ * Class BookedItemRepository
  * @package App\Model
  */
-class ItemRepository extends Repository
+class BookedItemRepository extends Repository
 {
 
     /**
@@ -16,6 +16,6 @@ class ItemRepository extends Repository
      */
     function getTableName()
     {
-        return 'item';
+        return 'bookeditem';
     }
 }
