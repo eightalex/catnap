@@ -50,8 +50,7 @@ class App
             '/'                 => 'App\PageController@mainPage',
             '/contact-us'       => 'App\PageController@contactUs',
             '/cart'             => 'App\PageController@cart',
-            '/item/:num'        => 'App\PageController@item',
-            '/order/add'        => 'App\OrderController@setOrder'
+            '/item/:num'        => 'App\PageController@item'
         ]);
     }
 

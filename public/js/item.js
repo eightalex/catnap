@@ -5,7 +5,7 @@ var item = (function() {
     };
 
     var config = {
-        addOrderUrl: '/order/add'
+        twoDays: 3600 * 24 * 2
     };
 
     function dispatchSuccess() {
@@ -30,26 +30,31 @@ var item = (function() {
         document.dispatchEvent(event);
     }
 
+    function getUpdatedOrder() {
+        var order = getCookie('order') || '{}',
+            id = elem.orderNowBtn.dataset.id;
+
+        order = JSON.parse(order);
+
+        if (order['item' + id] !== undefined) {
+            order['item' + id]++;
+        } else {
+            order['item' + id] = 1;
+        }
+
+        return order;
+    }
+
     function setItemToOrder() {
-        fetch(config.addOrderUrl, {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ itemId: 1 })
-        })
-            .then(function(response) {
-                if (response.ok) {
-                    dispatchSuccess();
-                } else {
-                    dispatchError();
-                }
-            })
-            .catch(function(error) {
-                dispatchError();
-                console.error('Request failed', error);
-            });
+        var updatedOrder = getUpdatedOrder();
+
+        try {
+            setCookie('order', JSON.stringify(updatedOrder), { expires: config.twoDays });
+            dispatchSuccess();
+        } catch(e) {
+            dispatchError();
+            console.error(e.name + ": " + e.message + "\n" + e.stack);
+        }
     }
 
     return {
