@@ -13,7 +13,7 @@ var amountSwitcher = (function() {
 
     var config = {
         minNumber: 1,
-        maxNumber: 10
+        maxNumber: 500
     };
 
     var state = {
@@ -36,28 +36,20 @@ var amountSwitcher = (function() {
         input.value = newAmount;
     }
 
-    function dispatchAmount(currentInput, newAmount) {
-        var event = new CustomEvent('changeAmount', {
-            detail: {
-                'currentInput': currentInput,
-                'newAmount': newAmount
-            }
+    function publishAmount(currentInput, newAmount) {
+        amountSwitcher.publish('changeAmount', {
+            currentInput: currentInput,
+            newAmount: newAmount
         });
-
-        document.dispatchEvent(event);
     }
 
     function validateAmount(number) {
-        if (isNaN(number)) {
-            return false;
-        }
-
         if (number < config.minNumber ||
             number > config.maxNumber) {
             return false;
         }
 
-        return number % 1 === 0;
+        return validator.checkInteger(number); // TODO call through mediator
     }
 
     function handleFocusAmount(event) {
@@ -76,14 +68,14 @@ var amountSwitcher = (function() {
 
         if (!validateAmount(newAmount)) {
             setAmount(currentInput, state.currentAmount);
-            return;
+            newAmount = state.currentAmount;
         } else if (newAmount < config.minNumber) {
             setAmount(currentInput, config.minNumber);
         } else if (newAmount > config.maxNumber) {
             setAmount(currentInput, config.maxNumber);
         }
 
-        dispatchAmount(currentInput, newAmount);
+        publishAmount(currentInput, newAmount);
     }
 
     function handleClickMinus() {
@@ -95,7 +87,7 @@ var amountSwitcher = (function() {
         }
 
         setAmount(currentInput, newAmount);
-        dispatchAmount(currentInput, newAmount);
+        publishAmount(currentInput, newAmount);
     }
 
     function handleClickPlus() {
@@ -107,12 +99,12 @@ var amountSwitcher = (function() {
         }
 
         setAmount(currentInput, newAmount);
-        dispatchAmount(currentInput, newAmount);
+        publishAmount(currentInput, newAmount);
     }
 
     return {
         init: function() {
-            // todo set config.minNumber to input.value
+            mediator.installTo(amountSwitcher);
 
             elem.switchers.forEach(function(switcher) {
                 switcher.querySelector(selector.amount).addEventListener('focus', handleFocusAmount);

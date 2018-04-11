@@ -4,61 +4,19 @@ var item = (function() {
         orderNowBtn: document.querySelector('.js-order-now')
     };
 
-    var config = {
-        twoDays: 3600 * 24 * 2
-    };
-
-    function dispatchSuccess() {
-        var event = new CustomEvent('notify', {
-            detail: {
-                'notifyType': 'success',
-                'messageId': 1
-            }
-        });
-
-        document.dispatchEvent(event);
-    }
-
-    function dispatchError() {
-        var event = new CustomEvent('notify', {
-            detail: {
-                'notifyType': 'error',
-                'messageId': 1
-            }
-        });
-
-        document.dispatchEvent(event);
-    }
-
-    function getUpdatedOrder() {
-        var order = getCookie('order') || '{}',
-            id = elem.orderNowBtn.dataset.id;
-
-        order = JSON.parse(order);
-
-        if (order['item' + id] !== undefined) {
-            order['item' + id]++;
-        } else {
-            order['item' + id] = 1;
-        }
-
-        return order;
-    }
-
     function setItemToOrder() {
-        var updatedOrder = getUpdatedOrder();
-
         try {
-            setCookie('order', JSON.stringify(updatedOrder), { expires: config.twoDays });
-            dispatchSuccess();
+            item.publish('setOrder', { id: elem.orderNowBtn.dataset.id, action: 'increase', changer: 1 });
+            item.publish('notify', { notifyType: 'success', messageId: 1 });
         } catch(e) {
-            dispatchError();
+            item.publish('notify', { notifyType: 'error', messageId: 1 });
             console.error(e.name + ": " + e.message + "\n" + e.stack);
         }
     }
 
     return {
         init: function() {
+            mediator.installTo(item);
             elem.orderNowBtn.addEventListener('click', setItemToOrder);
         }
     }

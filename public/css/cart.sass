@@ -8,9 +8,19 @@
         position: relative
         display: flex
         align-items: flex-start
+        margin-bottom: 30px
+
+    &__row
+        display: flex
 
         &:not(:last-child)
             margin-bottom: 30px
+
+        &_jc_fe
+            justify-content: flex-end
+
+        &_jc_c
+            justify-content: center
 
     &__col
         margin-right: 20px
@@ -100,3 +110,7 @@
 
         &::after
             transform: rotate(45deg)
+
+    &__total
+        font-style: normal
+        font-weight: bold

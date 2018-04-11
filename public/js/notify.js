@@ -31,11 +31,16 @@ var notify = (function() {
     };
 
     var state = {
-        stopTimeout: null,
+        hideTimeout: null,
         animationTimeout: null
     };
 
-    function stopNotify() {
+    function resetTimeouts() {
+        clearTimeout(state.animationTimeout);
+        clearTimeout(state.hideTimeout);
+    }
+
+    function hideNotify() {
         elem.notify.classList.add(modifier.hide);
 
         state.animationTimeout = setTimeout(function() {
@@ -46,12 +51,9 @@ var notify = (function() {
         }, config.animationDuration)
     }
 
-    function runNotify(event) {
-        var notifyType = event.detail.notifyType || 'notify',
-            currentMessage = message[notifyType][event.detail.messageId];
-
-        clearTimeout(state.stopTimeout);
-        clearTimeout(state.animationTimeout);
+    function showNotify(args) {
+        var notifyType = args.notifyType || 'notify',
+            currentMessage = message[notifyType][args.messageId];
 
         switch (notifyType) {
             case 'success':
@@ -64,13 +66,18 @@ var notify = (function() {
 
         elem.notify.innerText = currentMessage.text;
         elem.notify.style.display = 'block';
+    }
 
-        state.stopTimeout = setTimeout(stopNotify, config.notifyTimeout);
+    function runNotify(args) {
+        resetTimeouts();
+        showNotify(args);
+        state.hideTimeout = setTimeout(hideNotify, config.notifyTimeout);
     }
 
     return {
         init: function() {
-            document.addEventListener('notify', runNotify);
+            mediator.installTo(notify);
+            mediator.subscribe('notify', runNotify);
         }
     };
 })();

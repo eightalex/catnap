@@ -5,19 +5,19 @@
         </figure>
     </div>
     <div class="cart__col cart__col_maw_m">
-        <a href="/item/<?= $id ?>" class="cart__title">SoundSleep Flora Della Vita</a>
+        <a href="/item/<?= $id ?>" class="cart__title"><?= $title ?></a>
         <p class="cart__description">Полуторный комплект<br>2 наволочки: 50х70, 70х70см</p>
     </div>
     <div class="cart__col cart__col_as_c cart__col_ml_a">
-        <?php $this->renderBlock('amount-switcher') ?>
+        <?php $this->renderBlock('amount-switcher', ['amount' => $amount]) ?>
         <var class="cart__price">
-            1шт = <span class="js-cart__price">600</span>грн
+            1шт = <span class="js-cart__price"><?= $price ?></span>грн
         </var>
     </div>
     <div class="cart__col cart__col_as_c cart__col_ml_a">
         <var class="cart__summary">
-            <span class="js-cart__summary">600</span>грн
+            <span class="js-cart__summary"><?= $summary ?></span>грн
         </var>
     </div>
-    <button class="cart__remove js-cart__remove"></button>
+    <button class="cart__remove js-cart__remove" data-id="<?= $id ?>"></button>
 </li>

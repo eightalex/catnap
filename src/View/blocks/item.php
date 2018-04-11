@@ -4,10 +4,11 @@
     </div>
     <div class="item__container">
         <div class="item__left-side">
-            <img class="item__img" src="/img/item/<?= $item->id ?>.jpg" alt="Фото <?= $item->name ?>">
-            <img class="item__img" src="/img/item/1_2.jpg" alt="Фото <?= $item->name ?>">
-            <img class="item__img" src="/img/item/1_3.jpg" alt="Фото <?= $item->name ?>">
-            <img class="item__img" src="/img/item/1_4.jpg" alt="Фото <?= $item->name ?>">
+<!--            <img class="item__img" src="/img/item/--><?//= $item->id ?><!--.jpg" alt="Фото --><?//= $item->name ?><!--">-->
+            <img class="item__img" src="/img/item/2.jpg" alt="Фото <?= $item->name ?>">
+            <img class="item__img" src="/img/item/2_2.jpg" alt="Фото <?= $item->name ?>">
+            <img class="item__img" src="/img/item/2_3.jpg" alt="Фото <?= $item->name ?>">
+            <img class="item__img" src="/img/item/2_4.jpg" alt="Фото <?= $item->name ?>">
         </div>
         <div class="item__right-side">
             <button class="btn js-order-now" data-id="<?= $item->id ?>">Добавить в корзину</button>

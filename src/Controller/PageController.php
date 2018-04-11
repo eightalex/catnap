@@ -56,6 +56,17 @@ class PageController extends Controller
     }
 
     /**
+     * @param $itemId
+     */
+    public function getItem($itemId)
+    {
+        $pageRepository = new ItemRepository();
+        $item = $pageRepository->find($itemId);
+
+        var_dump($item);
+    }
+
+    /**
      *
      */
     public function cart()
