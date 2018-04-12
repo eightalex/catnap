@@ -16,7 +16,6 @@ require '../core/Controller/Controller.php';
 require '../core/Service/Service.php';
 require '../core/Service/ContainerInjector.php';
 require '../src/Controller/PageController.php';
-require '../src/Controller/ItemController.php';
 require '../src/Controller/OrderController.php';
 require '../src/Model/Page/Page.php';
 require '../src/Model/Page/PageRepository.php';

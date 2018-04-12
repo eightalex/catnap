@@ -1,21 +1,21 @@
 <ul class="cart">
     <?php
 
-    $order = json_decode($_COOKIE['order']);
+    $total = 0;
 
-    foreach($order as $key => $amount) {
-
+    foreach($order as $item) {
         // TODO добавить ограничение количества
-        $this->getItem($item_id);
+        $summary = $item['price'] * $item['amount'];
 
-        $item_id = substr($key, -1);
         $this->renderBlock('cart__item', [
-                'id' => $item_id,
-            'amount' => $amount,
-             'title' => 'SoundSleep Flora Della Vita',
-             'price' => 600,
-           'summary' => 600
+                'id' => $item['id'],
+            'amount' => $item['amount'],
+             'title' => $item['title'],
+             'price' => $item['price'],
+           'summary' => $summary
         ]);
+
+        $total += $summary;
     }
 
     ?>
@@ -25,7 +25,7 @@
         </div>
         <div class="cart__col">
             <var class="cart__total">
-                <span class="js-cart__total">1800</span>грн
+                <span class="js-cart__total"><?= $total ?></span>грн
             </var>
         </div>
     </li>

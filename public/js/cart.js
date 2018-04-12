@@ -43,23 +43,14 @@ var cart = (function() {
     }
 
     function changeAmount(args) {
+        cart.publish('setOrder', { id: target.dataset.id, action: 'delete' });
         setSummary(args);
         setTotal();
     }
 
-    function deleteItemCookies(id) { // TODO move method to Item
-        var order = cookieEditor.get('order') || '{}'; // TODO get through mediator
-
-        order = JSON.parse(order);
-
-        delete order['item' + id];
-
-        order.set(order); // TODO set through mediator
-    }
-
     function removeItem(target) { // TODO move method to Item
-        deleteItemCookies(target.dataset.id);
         target.parentNode.remove();
+        cart.publish('setOrder', { id: target.dataset.id, action: 'delete' });
     }
 
     return {

@@ -14,22 +14,25 @@ var order = (function() {
         var order = getOrder();
         var id = args.id,
             action = args.action,
-            changer = args.changer;
+            changer = args.changer || null;
 
-        if (order['item' + id] === undefined) {
-            order['item' + id] = 1;
+        if (order[id] === undefined) {
+            order[id] = 1;
         } else {
             switch(action) {
                 case 'increase':
-                    order['item' + id] += changer;
+                    order[id] += changer;
                     break;
                 case 'decrease':
-                    order['item' + id] -= changer;
+                    order[id] -= changer;
+                    break;
+                case 'delete':
+                    delete order[id];
                     break;
             }
 
-            if (validator.checkInteger(order['item' + id])) {
-                order['item' + id] = 1;
+            if (action !== 'delete' && !validator.checkInteger(order[id])) {
+                order[id] = 1;
                 item.publish('notify', { notifyType: 'error', messageId: 1 });
             }
         }

@@ -56,21 +56,27 @@ class PageController extends Controller
     }
 
     /**
-     * @param $itemId
-     */
-    public function getItem($itemId)
-    {
-        $pageRepository = new ItemRepository();
-        $item = $pageRepository->find($itemId);
-
-        var_dump($item);
-    }
-
-    /**
      *
      */
     public function cart()
     {
-        $this->renderPage('cart');
+        $order = json_decode($_COOKIE['order'], true);
+        $pageRepository = new ItemRepository();
+
+        foreach ($order as $itemId => $amount) {
+            $item = $pageRepository->find($itemId);
+
+            $order[] = [
+                'id'     => $item->id,
+                'title'  => $item->name,
+                'img'    => $item->img,
+                'price'  => $item->price,
+                'amount' => $amount
+            ];
+
+            unset($order[$itemId]);
+        }
+
+        $this->renderPage('cart', ['order' => $order]);
     }
 }

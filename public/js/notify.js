@@ -62,6 +62,7 @@ var notify = (function() {
             case 'error':
                 elem.notify.classList.add(modifier.error);
                 console.error('notify: ' + currentMessage.description);
+                console.trace();
         }
 
         elem.notify.innerText = currentMessage.text;
