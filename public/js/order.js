@@ -6,25 +6,30 @@ var order = (function() {
     };
 
     function getOrder() {
-        var order = cookieEditor.get('order') || '{}'; // TODO get through mediator
+        var order = cookieEditor.get('order') || '{}';
         return JSON.parse(order);
     }
 
     function setOrder(args) {
-        var order = getOrder();
+
         var id = args.id,
             action = args.action,
-            changer = args.changer || null;
+            order = getOrder();
 
-        if (order[id] === undefined) {
+        if (order[id] === undefined)
+        {
             order[id] = 1;
-        } else {
-            switch(action) {
+        }
+        else
+        {
+            order[id] = Number(order[id]);
+
+            switch (action) {
                 case 'increase':
-                    order[id] += changer;
+                    order[id] += 1;
                     break;
-                case 'decrease':
-                    order[id] -= changer;
+                case 'change':
+                    order[id] = args.newAmount || null;
                     break;
                 case 'delete':
                     delete order[id];
@@ -43,10 +48,24 @@ var order = (function() {
         });
     }
 
+    function sendOrder(e) {
+        e.preventDefault();
+
+        var form = document.querySelector('.js-checkout__form');
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', '/api/sendOrder', true);
+        xhr.send(formData);
+    }
+
     return {
         init: function() {
             mediator.installTo(order);
             mediator.subscribe('setOrder', setOrder);
+
+            serializeCart();
+            document.querySelector('.js-order').addEventListener('click', sendOrder);
         }
     };
 })();

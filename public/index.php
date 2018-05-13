@@ -49,8 +49,9 @@ class App
         $this->initRouter([
             '/'                 => 'App\PageController@mainPage',
             '/contact-us'       => 'App\PageController@contactUs',
-            '/cart'             => 'App\PageController@cart',
-            '/item/:num'        => 'App\PageController@item'
+            '/cart'             => 'App\PageController@checkout',
+            '/item/:num'        => 'App\PageController@item',
+            '/api/sendOrder'    => 'App\OrderController@sendOrder'
         ]);
     }
 

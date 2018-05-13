@@ -27,6 +27,10 @@ var amountSwitcher = (function() {
             return target.closest(selector.switcher).querySelector(selector.amount);
         }
     }
+    
+    function getId(currentInput) {
+        return currentInput.dataset.id;
+    }
 
     function getAmount(input) {
         return Number(input.value);
@@ -37,7 +41,10 @@ var amountSwitcher = (function() {
     }
 
     function publishAmount(currentInput, newAmount) {
+        var id = getId(currentInput);
+
         amountSwitcher.publish('changeAmount', {
+            id: id,
             currentInput: currentInput,
             newAmount: newAmount
         });

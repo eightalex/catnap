@@ -1,9 +1,11 @@
 .btn
+    display: inline-block
     padding: 8px 14px 9px
-    font-size: 15px
-    color: #2f77aa
     border: 1px solid currentColor
     background: none
+    color: #2f77aa
+    font-size: 15px
+    text-decoration: none
     cursor: pointer
 
     &:hover
@@ -11,6 +13,9 @@
 
     &:active
         background-color: rgba(#2f77aa, 0.1)
+
+    &_signal
+        animation: signal 1500ms ease-out
 
     &_accent
         color: #fff
@@ -21,3 +26,19 @@
 
         &:active
             background-color: #2e9434
+
+    @keyframes signal
+
+        from
+            color: #fff
+            border-color: #2e9434
+            background-color: rgba(#2e9434, 1)
+            box-shadow: 0 0 7px rgba(#2e9434, 1)
+
+        50%
+            box-shadow: 0 0 7px rgba(#2e9434, 0)
+
+        to
+            color: #2f77aa
+            border-color: #2f77aa
+            background-color: rgba(#2e9434, 0)

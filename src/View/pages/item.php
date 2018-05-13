@@ -3,6 +3,7 @@
     'styles' => [
         '/css/btn.css',
         '/css/item.css',
+        '/css/container.css',
         '/css/notify.css'
     ]
 ]); ?>
@@ -15,6 +16,7 @@
     'scripts' => [
         '/js/notify.js',
         '/js/order.js',
-        '/js/item.js'
+        '/js/item.js',
+        '/js/btn.js'
     ]
 ]); ?>

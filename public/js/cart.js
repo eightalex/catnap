@@ -43,7 +43,7 @@ var cart = (function() {
     }
 
     function changeAmount(args) {
-        cart.publish('setOrder', { id: target.dataset.id, action: 'delete' });
+        cart.publish('setOrder', { id: args.id, action: 'change', newAmount: args.newAmount });
         setSummary(args);
         setTotal();
     }

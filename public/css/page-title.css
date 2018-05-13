@@ -1,6 +1,14 @@
 .page-title {
-  margin: 70px 20px 20px;
-  font-size: 24px;
-  color: #111; }
+  @import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+  margin: 0;
+  padding: 40px 20px 0;
+  color: #111;
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  font-weight: normal;
+  text-align: center; }
+  @media (max-width: 400px) {
+    .page-title {
+      font-size: 28px; } }
 
 /*# sourceMappingURL=page-title.css.map */

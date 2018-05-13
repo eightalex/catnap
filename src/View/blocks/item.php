@@ -2,9 +2,8 @@
     <div class="item__heading">
         <h1 class="item__title"><?= $item->name ?></h1>
     </div>
-    <div class="item__container">
+    <div class="container">
         <div class="item__left-side">
-<!--            <img class="item__img" src="/img/item/--><?//= $item->id ?><!--.jpg" alt="Фото --><?//= $item->name ?><!--">-->
             <img class="item__img" src="/img/item/2.jpg" alt="Фото <?= $item->name ?>">
             <img class="item__img" src="/img/item/2_2.jpg" alt="Фото <?= $item->name ?>">
             <img class="item__img" src="/img/item/2_3.jpg" alt="Фото <?= $item->name ?>">

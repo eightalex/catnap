@@ -7,7 +7,6 @@ use App\Model\Page\Page;
 use App\Model\Page\PageRepository;
 use Core\Controller\Controller;
 
-
 /**
  * Class PageController
  */
@@ -58,9 +57,10 @@ class PageController extends Controller
     /**
      *
      */
-    public function cart()
+    public function checkout()
     {
-        $order = json_decode($_COOKIE['order'], true);
+        $order = json_decode($_COOKIE['order'], true) ?: [];
+
         $pageRepository = new ItemRepository();
 
         foreach ($order as $itemId => $amount) {
@@ -77,6 +77,6 @@ class PageController extends Controller
             unset($order[$itemId]);
         }
 
-        $this->renderPage('cart', ['order' => $order]);
+        $this->renderPage('checkout', ['order' => $order]);
     }
 }
