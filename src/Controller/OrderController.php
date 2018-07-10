@@ -28,8 +28,8 @@ class OrderController extends Controller
 
             $order[] = [
                 'title'  => $item->name,
-                'amount' => $amount . " шт",
-                'price'  => $item->price * $amount . " грн"
+                'amount' => $amount . ' шт',
+                'price'  => $item->price * $amount . ' грн'
             ];
 
             unset($order[$itemId]);
@@ -44,11 +44,11 @@ class OrderController extends Controller
      */
     private function makeOrderMessage($data)
     {
-        $message = "";
+        $message = '';
         $order = $this->getOrder();
 
         foreach ($data as $key => $value) {
-            if ($value === "") {
+            if ($value === '') {
                 continue;
             }
 
