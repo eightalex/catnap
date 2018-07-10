@@ -19,22 +19,22 @@ class APIController extends Controller
     /**
      * @var \Memcache
      */
-    private $M;
+    private $cache;
 
     /**
      * @var object
      */
-    private $NP;
+    private $novaPoshta;
 
     /**
      * APIController constructor.
      */
     public function __construct()
     {
-        $this->M = new \Memcache();
-        $this->NP = $this->getContainer()->get(NovaPoshtaApi2::class);
+        $this->cache = new \Memcache();
+        $this->novaPoshta = $this->getContainer()->get(NovaPoshtaApi2::class);
 
-        $this->M->addServer('localhost', 11211);
+        $this->cache->addServer('localhost', 11211);
     }
 
     /**
@@ -42,9 +42,9 @@ class APIController extends Controller
      */
     function getNPCities()
     {
-        if (!$cities = $this->M->get('np_cities')) {
-            $cities = $this->NP->getCities();
-            $this->M->set('np_cities', $cities, 0, self::DAY);
+        if (!$cities = $this->cache->get('np_cities')) {
+            $cities = $this->novaPoshta->getCities();
+            $this->cache->set('np_cities', $cities, 0, self::DAY);
         }
 
         echo json_encode($cities['data']);
@@ -57,11 +57,11 @@ class APIController extends Controller
     {
         $cacheKey = 'np_warehouses_' . $_POST['CityID'];
 
-        if (!$departaments = $this->M->get($cacheKey)) {
-            $departaments = $this->NP->getWarehouses($_POST['cityRef']);
-            $this->M->set($cacheKey, $departaments, 0, self::DAY);
+        if (!$warehouses = $this->cache->get($cacheKey)) {
+            $warehouses = $this->novaPoshta->getWarehouses($_POST['cityRef']);
+            $this->cache->set($cacheKey, $warehouses, 0, self::DAY);
         }
 
-        echo json_encode($departaments['data']);
+        echo json_encode($warehouses['data']);
     }
 }
