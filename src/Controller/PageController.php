@@ -43,7 +43,6 @@ class PageController extends Controller
      */
     public function item()
     {
-
         $uri = $_SERVER['REQUEST_URI'];
         $uri_arr = explode('/', $uri);
         $itemId = end($uri_arr);

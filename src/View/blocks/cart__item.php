@@ -1,7 +1,7 @@
 <li class="cart__item js-cart__item">
     <div class="cart__col">
         <figure class="cart__img">
-            <img src="/img/gallery/<?= $id ?>.jpg" alt="img">
+            <img src="/img/item/<?= $id ?>/cover.jpg" alt="img">
         </figure>
     </div>
     <div class="cart__col cart__col_miw_237 cart__col_maw_m">

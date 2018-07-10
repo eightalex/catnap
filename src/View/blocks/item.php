@@ -4,10 +4,20 @@
     </div>
     <div class="container">
         <div class="item__left-side">
-            <img class="item__img" src="/img/item/2.jpg" alt="Фото <?= $item->name ?>">
-            <img class="item__img" src="/img/item/2_2.jpg" alt="Фото <?= $item->name ?>">
-            <img class="item__img" src="/img/item/2_3.jpg" alt="Фото <?= $item->name ?>">
-            <img class="item__img" src="/img/item/2_4.jpg" alt="Фото <?= $item->name ?>">
+            <?php
+
+            $dir = $_SERVER['DOCUMENT_ROOT'] . "/img/item/" . $item->id;
+
+            if ($dh = opendir($dir)) {
+                while (($file = readdir($dh)) !== false) {
+                    if (strpos($file, '.jpg')) {
+                        echo '<img class="item__img" src="/img/item/' . $item->id . '/' . $file . '" alt="' . $item->name . '">';
+                    }
+                }
+                closedir($dh);
+            }
+
+            ?>
         </div>
         <div class="item__right-side">
             <button class="btn js-order-now" data-id="<?= $item->id ?>">Добавить в корзину</button>

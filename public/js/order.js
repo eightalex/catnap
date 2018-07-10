@@ -1,9 +1,7 @@
 var order = (function() {
 
-    var config = {
-        root: '/',
-        twoDays: 3600 * 24 * 2
-    };
+    var ROOT = '/';
+    var TWO_DAYS = 3600 * 24 * 2;
 
     function getOrder() {
         var order = cookieEditor.get('order') || '{}';
@@ -43,16 +41,15 @@ var order = (function() {
         }
 
         cookieEditor.set('order', JSON.stringify(order), {
-            path: config.root,
-            expires: config.twoDays
+            path: ROOT,
+            expires: TWO_DAYS
         });
     }
 
     function sendOrder(e) {
         e.preventDefault();
 
-        var form = document.querySelector('.js-checkout__form');
-        var formData = new FormData(form);
+        var formData = new FormData(document.forms.checkout);
         var xhr = new XMLHttpRequest();
 
         xhr.open('POST', '/api/sendOrder', true);
@@ -64,8 +61,9 @@ var order = (function() {
             mediator.installTo(order);
             mediator.subscribe('setOrder', setOrder);
 
-            serializeCart();
-            document.querySelector('.js-order').addEventListener('click', sendOrder);
+            if (window.location.pathname === '/cart') {
+                document.querySelector('.js-order').addEventListener('click', sendOrder);
+            }
         }
     };
 })();

@@ -31,7 +31,8 @@ class Service
             return $this->instantiated_services[$class];
         }
 
-        $args = $this->services[$class];
+        $args = $this->services[$class] ?: [];
+
         switch (count($args)) {
             case 0:
                 $object = new $class();

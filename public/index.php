@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use App\NovaPoshtaApi2;
 use Core\DataBase\DataBase;
 use Core\lib\Router;
 use Core\Service\ContainerInjector;
@@ -17,6 +18,7 @@ require '../core/Service/Service.php';
 require '../core/Service/ContainerInjector.php';
 require '../src/Controller/PageController.php';
 require '../src/Controller/OrderController.php';
+require '../src/Controller/APIController.php';
 require '../src/Model/Page/Page.php';
 require '../src/Model/Page/PageRepository.php';
 require '../src/Model/Item/Item.php';
@@ -25,6 +27,7 @@ require '../src/Model/BookedItem/BookedItem.php';
 require '../src/Model/BookedItem/BookedItemRepository.php';
 require '../src/Model/Order/Order.php';
 require '../src/Model/Order/OrderRepository.php';
+require '../src/Service/NovaPoshtaApi2.php';
 
 /**
  * Class App
@@ -43,15 +46,20 @@ class App
         $this->initService([
             Router::class => [
                 $this->getServiceUri(), $_SERVER['REQUEST_METHOD']
+            ],
+            NovaPoshtaApi2::class => [
+                $_SERVER['NP_API_KEY']
             ]
         ]);
 
         $this->initRouter([
-            '/'                 => 'App\PageController@mainPage',
-            '/contact-us'       => 'App\PageController@contactUs',
-            '/cart'             => 'App\PageController@checkout',
-            '/item/:num'        => 'App\PageController@item',
-            '/api/sendOrder'    => 'App\OrderController@sendOrder'
+            '/'                    => 'App\PageController@mainPage',
+            '/contact-us'          => 'App\PageController@contactUs',
+            '/cart'                => 'App\PageController@checkout',
+            '/item/:num'           => 'App\PageController@item',
+            '/api/sendOrder'       => 'App\OrderController@sendOrder',
+            '/api/getNPCities'     => 'App\APIController@getNPCities',
+            '/api/getNPWarehouses' => 'App\APIController@getNPWarehouses',
         ]);
     }
 

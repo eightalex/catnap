@@ -8,3 +8,4 @@ phpunit.xml
 .idea
 *.css
 *.map
+.env

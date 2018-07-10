@@ -28,7 +28,22 @@
         margin: 10px;
         max-width: 545px;
         width: calc(100% - 20px); } }
-    .gallery__item img {
+  .gallery__img {
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 25vw; }
+    @media (max-width: 1200px) {
+      .gallery__img {
+        height: 33vw; } }
+    @media (max-width: 1000px) {
+      .gallery__img {
+        height: 50vw; } }
+    @media (max-width: 800px) {
+      .gallery__img {
+        height: 100vw; } }
+    .gallery__img img {
       width: 100%; }
   .gallery__info {
     display: block;

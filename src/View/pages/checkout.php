@@ -1,6 +1,7 @@
 <?php $this->renderBlock('head', [
     'title' => 'Cart — Yousleep',
     'styles' => [
+        '/css/libs/auto-complete.css',
         '/css/cart.css',
         '/css/amount-switcher.css',
         '/css/btn.css',
@@ -19,8 +20,10 @@
 <?php $this->renderBlock('footer'); ?>
 <?php $this->renderBlock('bottom', [
     'scripts' => [
+        '/js/libs/auto-complete.min.js',
         '/js/order.js',
         '/js/cart.js',
-        '/js/amount-switcher.js'
+        '/js/amount-switcher.js',
+        '/js/np.js',
     ]
 ]); ?>

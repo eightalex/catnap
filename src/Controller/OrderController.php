@@ -29,7 +29,7 @@ class OrderController extends Controller
             $order[] = [
                 'title'  => $item->name,
                 'amount' => $amount . " шт",
-                'price'  => $item->price . " грн"
+                'price'  => $item->price * $amount . " грн"
             ];
 
             unset($order[$itemId]);
@@ -56,7 +56,7 @@ class OrderController extends Controller
         }
 
         foreach ($order as $item) {
-            $message .= PHP_EOL . join(PHP_EOL, $item);
+            $message .= str_repeat(PHP_EOL, 2) . join(PHP_EOL, $item);
         }
 
         return "Нове замовлення!\n\n" . $message;
@@ -67,19 +67,19 @@ class OrderController extends Controller
      */
     private function sendToTelegram()
     {
-        $token = "542446882:AAGpaxji9BHsAuCFLjyBouPx9gzJ6ok2x3k";
-        $chatId = "-268022090";
-
         $message = $this->makeOrderMessage($_POST);
+
+        $query = http_build_query([
+            'chat_id' => $_SERVER['TELEGREAM_CHAT_ID'],
+            'text' => $message
+        ]);
 
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot$token/sendMessage");
+        curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot{$_SERVER['TELEGREAM_TOKEN']}/sendMessage");
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "chat_id=$chatId&text=$message");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        var_dump($message);
 
         curl_exec($ch);
         curl_close($ch);
