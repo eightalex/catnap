@@ -1,59 +1,31 @@
 .cart
+    max-width: 620px
     width: 100%
 
     &__list
         margin: 0 auto
         padding: 0
-        max-width: 850px
         list-style: none
 
     &__item
         position: relative
         display: flex
-        align-items: flex-start
-        margin-bottom: 30px
 
-    &__row
-        display: flex
-
-        &:not(:last-child)
-            margin-bottom: 30px
-
-        &_jc_fe
-            justify-content: flex-end
-
-        &_jc_c
-            justify-content: center
-
-    &__col
-        margin-right: 20px
-
-        &_as_c
-            align-self: center
-
-        &_jc_c
-            justify-content: center
-
-        &_ml_a
-            margin-left: auto
-
-        &_maw_m
-            max-width: 370px
-
-        &_miw_237
-            min-width: 237px
+        & + &
+            margin-top: 20px
 
     &__img
         overflow: hidden
         display: flex
-        align-items: flex-end
+        flex-shrink: 0
         margin: 0
-        width: 130px
-        height: 130px
+        width: 80px
+        height: 80px
         font-size: 0
 
         img
             width: 100%
+            object-fit: cover
 
     &__title
         display: block
@@ -67,7 +39,9 @@
 
     &__description
         display: block
-        margin: 10px 0 0
+        margin: 3px 0 0
+        font-size: 14px
+        opacity: 0.6
 
     &__price
         display: block
@@ -79,21 +53,23 @@
 
     &__summary
         display: block
-        width: 80px
-        font-weight: bold
+        margin-top: 5px
         font-style: normal
-        text-align: right
+        white-space: nowrap
+        font-size: 16px
 
     &__remove
-        position: absolute
-        top: 0
-        right: 0
+        position: relative
+        flex-shrink: 0
+        align-self: center
+        margin-bottom: 18px
         padding: 0
-        width: 15px
-        height: 15px
-        color: #2f77aa
+        width: 25px
+        height: 25px
+        color: #a4a4a4
         outline: none
-        border: none
+        border-radius: 50%
+        border: 1px solid currentColor
         background: none
         cursor: pointer
 
@@ -102,15 +78,15 @@
 
         &:focus
             outline: none
-            box-shadow: 0 0 5px rgba(#2f77aa, 0.4)
+            box-shadow: 0 0 5px rgba(#a4a4a4, 0.8)
 
         &::before,
         &::after
             position: absolute
-            top: 2px
-            left: 7px
+            top: 4px
+            left: 11px
             width: 1px
-            height: 11px
+            height: 15px
             background-color: currentColor
             content: ''
 
@@ -121,8 +97,14 @@
             transform: rotate(45deg)
 
     &__total
+        margin-left: 5px
         font-style: normal
-        font-weight: bold
+        
+    &__footer
+        display: flex
+        justify-content: flex-end
+        margin-top: 20px
+        font-weight: 500
 
     &__placeholder
         padding: 50px 20px

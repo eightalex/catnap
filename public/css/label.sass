@@ -1,8 +1,14 @@
 .label
-    display: block
-    margin-top: 10px
-    margin-bottom: 5px
+    display: flex
+    align-items: center
     font-size: 15px
+    font-weight: 500
 
-    &:first-of-type
-        margin-top: 0
+    &_np
+        &::after
+            content: ''
+            margin-left: 5px
+            width: 13px
+            height: 13px
+            background-image: url("/img/checkout/nova-poshta-mini-logo.png")
+            background-size: contain

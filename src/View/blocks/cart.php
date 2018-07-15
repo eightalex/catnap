@@ -21,15 +21,14 @@
             }
 
             ?>
-            <li class="cart__row cart__row_jc_fe"> <!-- TODO Move from list -->
-                <div class="cart__col">Всего:</div>
-                <div class="cart__col">
-                    <var class="cart__total">
-                        <span class="js-cart__total"><?= $total ?></span>грн
-                    </var>
-                </div>
-            </li>
+
         </ul>
+        <div class="cart__footer">
+            Всего:
+            <var class="cart__total">
+                <span class="js-cart__total"><?= $total ?></span> грн
+            </var>
+        </div>
     <?php else : ?>
         <div class="cart__placeholder">
             Корзина пустая

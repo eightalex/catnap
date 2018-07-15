@@ -8,6 +8,7 @@
         '/css/page-title.css',
         '/css/checkout.css',
         '/css/container.css',
+        '/css/table.css',
         '/css/form.css',
         '/css/input.css',
         '/css/select.css',
