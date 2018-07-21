@@ -8,8 +8,6 @@
   list-style: none;
   border-top: 1px solid #f1f1f1;
   border-bottom: 1px solid #f1f1f1; }
-  .main-menu__item:not(:last-child) {
-    margin-right: 20px; }
   .main-menu__link {
     display: flex;
     padding: 10px 5px;
@@ -20,6 +18,10 @@
       color: #111; }
     .main-menu__link:hover {
       color: #999; }
+  .main-menu__item:not(:last-child) {
+    margin-right: 20px; }
+  .main-menu__item_active {
+    text-decoration: underline; }
   @media (max-width: 700px) {
     .main-menu {
       flex-direction: column;

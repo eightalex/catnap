@@ -4,6 +4,17 @@ var mainMenu = (function() {
         cartCounter: document.querySelector('.js-cart-counter')
     };
 
+    function highlightItem() {
+        var slug = document.location.pathname.slice(1);
+        var item = document.querySelector('[data-slug="' + slug + '"]');
+
+        console.log(item);
+
+        if (item) {
+            item.classList.add('main-menu__item_active');
+        }
+    }
+
     function updateCartCounter() {
         var orderSize = order.getOrderSize();
 
@@ -21,6 +32,7 @@ var mainMenu = (function() {
             mediator.installTo(mainMenu);
             mainMenu.subscribe('updateCartCounter', updateCartCounter);
 
+            highlightItem();
             updateCartCounter();
         }
     }
