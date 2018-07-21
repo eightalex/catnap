@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,IAAI;EACA,UAAU,EAAE,UAAU;;AAE1B;;QAAE;EAGE,UAAU,EAAE,OAAO;;AAEvB,KAAK;EACD,gBAAgB,EAAE,IAAI;EACtB,WAAW,EAAE,iIAAiI",
+"mappings": "AAaQ,uEAA+D;AAbvE,IAAI;EACA,UAAU,EAAE,UAAU;;AAE1B;;QAAE;EAGE,UAAU,EAAE,OAAO;;AAEvB,KAAK;EACD,gBAAgB,EAAE,IAAI;EACtB,WAAW,EAAE,iIAAiI",
 "sources": ["page.sass"],
 "names": [],
 "file": "page.css"
