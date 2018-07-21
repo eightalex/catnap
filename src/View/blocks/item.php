@@ -11,7 +11,7 @@
             if ($dh = opendir($dir)) {
                 while (($file = readdir($dh)) !== false) {
                     if (strpos($file, '.jpg')) {
-                        echo '<img class="item__img" src="/img/item/' . $item->id . '/' . $file . '" alt="' . $item->name . '">';
+                        echo '<img class="item__img" src="/img/item/' . $item->id . '/JPEG/' . $file . '" alt="' . $item->name . '">';
                     }
                 }
                 closedir($dh);
