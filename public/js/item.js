@@ -1,7 +1,8 @@
 var item = (function() {
 
     var elem = {
-        orderNowBtn: document.querySelector('.js-order-now')
+        orderNowBtn: document.querySelector('.js-order-now'),
+        removeBtns: document.querySelectorAll('.js-cart__remove')
     };
 
     function setItemToOrder(event) {
@@ -15,10 +16,26 @@ var item = (function() {
         }
     }
 
+    function removeItem(event) {
+        event.target.parentNode.remove();
+        item.publish('setOrder', { id: event.target.dataset.id, action: 'delete' });
+        item.publish('setTotal');
+        // TODO if 0 items reset cart
+    }
+
     return {
         init: function() {
             mediator.installTo(item);
-            elem.orderNowBtn.addEventListener('click', setItemToOrder);
+
+            if (elem.orderNowBtn) {
+                elem.orderNowBtn.addEventListener('click', setItemToOrder);
+            }
+
+            if (elem.removeBtns) {
+                elem.removeBtns.forEach(function(removeBtn) {
+                    removeBtn.addEventListener('click', removeItem);
+                });
+            }
         }
     }
 })();

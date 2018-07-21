@@ -22,8 +22,8 @@
 <?php $this->renderBlock('bottom', [
     'scripts' => [
         '/js/libs/auto-complete.min.js',
-        '/js/order.js',
         '/js/cart.js',
+        '/js/item.js',
         '/js/amount-switcher.js',
         '/js/np.js',
     ]

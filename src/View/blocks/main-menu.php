@@ -15,6 +15,9 @@
         <a class="main-menu__link" href="/contact-us">Контакты</a>
     </li>
     <li class="main-menu__item">
-        <a class="main-menu__link" href="/cart" data-counter="">Корзина</a>
+        <a class="main-menu__link cart-counter js-cart-counter"
+           href="/cart"
+           data-slug="cart"
+           data-counter="0">Корзина</a>
     </li>
 </menu>

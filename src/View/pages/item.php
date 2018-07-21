@@ -15,7 +15,6 @@
 <?php $this->renderBlock('bottom', [
     'scripts' => [
         '/js/notify.js',
-        '/js/order.js',
         '/js/item.js',
         '/js/btn.js'
     ]

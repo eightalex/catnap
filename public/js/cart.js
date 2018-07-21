@@ -7,8 +7,7 @@ var cart = (function() {
     };
 
     var elem = {
-        total: document.querySelector('.js-cart__total'),
-        removeBtns: document.querySelectorAll('.js-cart__remove')
+        total: document.querySelector('.js-cart__total')
     };
 
     function getSummaryElem(currentInput) {
@@ -48,23 +47,11 @@ var cart = (function() {
         setTotal();
     }
 
-    function removeItem(target) { // TODO move method to Item
-        target.parentNode.remove();
-        cart.publish('setOrder', { id: target.dataset.id, action: 'delete' });
-    }
-
     return {
         init: function() {
             mediator.installTo(cart);
             mediator.subscribe('changeAmount', changeAmount);
-
-            elem.removeBtns.forEach(function(removeBtn) {
-                removeBtn.addEventListener('click', function(event) {
-                    removeItem(event.target);
-                    setTotal();
-                    // TODO if 0 items reset cart
-                });
-            });
+            mediator.subscribe('setTotal', setTotal);
         }
     }
 })();

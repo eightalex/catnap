@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/main-menu.css">
+    <link rel="stylesheet" href="/css/cart-counter.css">
     <link rel="stylesheet" href="/css/page.css">
     <link rel="stylesheet" href="/css/footer.css">
 

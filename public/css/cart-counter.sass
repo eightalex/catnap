@@ -1,0 +1,20 @@
+.cart-counter
+    display: none
+    align-items: center
+
+    &::after
+        content: attr(data-counter)
+        display: flex
+        justify-content: center
+        align-items: center
+        margin-left: 5px
+        padding: 0 5px 1px
+        min-width: 20px
+        height: 20px
+        color: #fff
+        border-radius: 10px
+        background-color: #2e9434
+        font-size: 13px
+
+    &_show
+        display: flex

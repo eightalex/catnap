@@ -1,8 +1,9 @@
 .main-menu
-    $breakpoint: 520px // change it if you change menu items
+    $breakpoint: 700px // change it if you change menu items
 
     display: flex
     justify-content: center
+    align-items: center
     margin: 0
     padding: 0
     list-style: none
@@ -29,6 +30,7 @@
 
     @media (max-width: $breakpoint)
         flex-direction: column
+        align-items: flex-start
         padding: 10px 10px 0
         border-bottom: none
 
@@ -36,4 +38,4 @@
 
             &::before
                 margin-right: 5px
-                content: '—'
+                content: '\2014'

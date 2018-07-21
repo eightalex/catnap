@@ -36,7 +36,7 @@ var order = (function() {
 
             if (action !== 'delete' && !validator.checkInteger(order[id])) {
                 order[id] = 1;
-                item.publish('notify', { notifyType: 'error', messageId: 1 });
+                order.publish('notify', { notifyType: 'error', messageId: 1 });
             }
         }
 
@@ -44,6 +44,8 @@ var order = (function() {
             path: ROOT,
             expires: TWO_DAYS
         });
+
+        mainMenu.publish('updateCartCounter');
     }
 
     function sendOrder(e) {
@@ -64,6 +66,19 @@ var order = (function() {
             if (window.location.pathname === '/cart') {
                 document.querySelector('.js-order').addEventListener('click', sendOrder);
             }
+        },
+
+        getOrderSize: function() {
+            var order = getOrder();
+            var size = 0;
+
+            for (var key in order) {
+                if (order.hasOwnProperty(key)) {
+                    size += parseInt(order[key], 10);
+                }
+            }
+
+            return size;
         }
     };
 })();

@@ -56,7 +56,7 @@ var amountSwitcher = (function() {
             return false;
         }
 
-        return validator.checkInteger(number); // TODO call through mediator
+        return validator.checkInteger(number);
     }
 
     function handleFocusAmount(event) {

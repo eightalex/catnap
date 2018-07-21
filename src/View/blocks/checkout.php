@@ -20,7 +20,10 @@
                 </div>
                 <div class="table__row">
                     <div class="table__cell">
-                        <label class="label" for="user-email">Электронная почта</label>
+                        <label class="label" for="user-email">
+                            Электронная почта
+                            <span class="label__description">(не обязательно)</span>
+                        </label>
                     </div>
                     <div class="table__cell">
                         <input class="input"
@@ -55,18 +58,7 @@
                                name="delivery-city"
                                type="search"
                                autocomplete="off"
-                               style="width: 390px;">
-                    </div>
-                </div>
-                <div class="table__row">
-                    <div class="table__cell">
-                        <label class="label" for="delivery-type">Тип доставки</label>
-                    </div>
-                    <div class="table__cell">
-                        <select class="select" name="delivery-type" id="delivery-type" style="width: 140px;">
-                            <option value="На отделение">На отделение</option>
-                            <option value="На адрес">На адрес</option>
-                        </select>
+                               style="width: 290px;">
                     </div>
                 </div>
                 <div class="table__row">
@@ -83,6 +75,6 @@
         </form>
     </div>
     <div class="checkout__btn-wrapper">
-        <a href="/checkout" class="btn btn_accent js-order">Заказать</a>
+        <button class="btn btn_accent js-order">Заказать</button>
     </div>
 </section>
