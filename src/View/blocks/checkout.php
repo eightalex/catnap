@@ -58,6 +58,7 @@
                                name="delivery-city"
                                type="search"
                                autocomplete="off"
+                               placeholder="Киев"
                                style="width: 290px;">
                     </div>
                 </div>
