@@ -20,6 +20,7 @@
             ?>
         </div>
         <div class="item__right-side">
+            <p class="item__price"><?= $item->price ?> <span>грн</span></p>
             <button class="btn js-order-now" data-id="<?= $item->id ?>">Добавить в корзину</button>
             <p>
                 Комплект:
