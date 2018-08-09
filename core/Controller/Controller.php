@@ -76,4 +76,12 @@ abstract class Controller
 
         return $this->container;
     }
+
+    protected function getCurrentPath()
+    {
+        $url = parse_url($_SERVER['REQUEST_URI']);
+        $path = explode('/', $url['path']);
+
+        return array_slice($path, 1);
+    }
 }

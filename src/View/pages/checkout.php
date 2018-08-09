@@ -1,6 +1,7 @@
 <?php $this->renderBlock('head', [
     'title' => 'Cart — Yousleep',
     'styles' => [
+        '/css/breadcrumbs.css',
         '/css/libs/auto-complete.css',
         '/css/cart.css',
         '/css/amount-switcher.css',
@@ -17,6 +18,7 @@
 ]); ?>
 <?php $this->renderBlock('header'); ?>
 <?php $this->renderBlock('main-menu'); ?>
+<?php $this->renderBlock('breadcrumbs', ['path' => $path]); ?>
 <?php $this->renderBlock('checkout', ['order' => $order]); ?>
 <?php $this->renderBlock('footer'); ?>
 <?php $this->renderBlock('bottom', [

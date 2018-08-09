@@ -50,7 +50,12 @@ class PageController extends Controller
         $itemRepository = new ItemRepository();
         $item = $itemRepository->find($itemId);
 
-        $this->renderPage('item', ['item' => $item]);
+        $currentPath = $this->getCurrentPath();
+
+        $this->renderPage('item', [
+            'item' => $item,
+            'path' => $currentPath
+        ]);
     }
 
     /**
@@ -76,6 +81,11 @@ class PageController extends Controller
             unset($order[$itemId]);
         }
 
-        $this->renderPage('checkout', ['order' => $order]);
+        $currentPath = $this->getCurrentPath();
+
+        $this->renderPage('checkout', [
+            'order' => $order,
+            'path' => $currentPath
+        ]);
     }
 }
