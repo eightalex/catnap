@@ -79,9 +79,8 @@ abstract class Controller
 
     protected function getCurrentPath()
     {
-        $url = parse_url($_SERVER['REQUEST_URI']);
-        $path = explode('/', $url['path']);
+        $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-        return array_slice($path, 1);
+        return explode('/', $path);
     }
 }
