@@ -2,6 +2,7 @@
 
 namespace Core\Controller;
 
+use Core\lib\Router;
 use Core\Service\ContainerInjector;
 use Core\Service\Service;
 
@@ -79,7 +80,8 @@ abstract class Controller
 
     protected function getCurrentPath()
     {
-        $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $router = ContainerInjector::getContainer()->get(Router::class);
+        $path = trim($router->getRequestUri(), '/');
 
         return explode('/', $path);
     }
