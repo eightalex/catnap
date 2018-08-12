@@ -20,7 +20,6 @@ class OrderController extends Controller
     private function getOrder()
     {
         $order = json_decode($_COOKIE['order'], true) ?: [];
-
         $pageRepository = new ItemRepository();
 
         foreach ($order as $itemId => $amount) {
@@ -28,8 +27,8 @@ class OrderController extends Controller
 
             $order[] = [
                 'title'  => $item->name,
-                'amount' => $amount . ' шт',
-                'price'  => $item->price * $amount . ' грн'
+                'amount' => $amount,
+                'price'  => $item->price * $amount
             ];
 
             unset($order[$itemId]);
@@ -39,15 +38,31 @@ class OrderController extends Controller
     }
 
     /**
-     * @param $data array
      * @return string
      */
-    private function makeOrderMessage($data)
+    private function makeOrderList()
     {
-        $message = '';
-        $order = $this->getOrder();
+        $items = $this->getOrder();
+        $orderList = '';
 
-        foreach ($data as $key => $value) {
+        foreach ($items as $key => $item) {
+            $item['amount'] .= ' шт';
+            $item['price'] .= ' грн';
+
+            $orderList .= join(', ', $item) . PHP_EOL;
+        }
+
+        return $orderList;
+    }
+
+    /**
+     * @return string
+     */
+    private function makeTelegramMessage()
+    {
+        $message = "Нове замовлення!\n\n";
+
+        foreach ($_POST as $key => $value) {
             if ($value === '') {
                 continue;
             }
@@ -55,11 +70,19 @@ class OrderController extends Controller
             $message .= $value . PHP_EOL;
         }
 
-        foreach ($order as $item) {
-            $message .= str_repeat(PHP_EOL, 2) . join(PHP_EOL, $item);
-        }
+        $message .= PHP_EOL . $this->makeOrderList();
 
-        return "Нове замовлення!\n\n" . $message;
+        return $message;
+    }
+
+    /**
+     * @return string
+     */
+    private function makeEmailMessage() {
+        $message = $this->makeOrderList();
+        $message .= PHP_EOL . 'Мы скоро свяжемся с Вами для подтверждения заказа';
+
+        return $message;
     }
 
     /**
@@ -67,7 +90,7 @@ class OrderController extends Controller
      */
     private function sendToTelegram()
     {
-        $message = $this->makeOrderMessage($_POST);
+        $message = $this->makeTelegramMessage();
 
         $query = http_build_query([
             'chat_id' => $_SERVER['TELEGREAM_CHAT_ID'],
@@ -86,10 +109,28 @@ class OrderController extends Controller
     }
 
     /**
+     * @param $address string
+     */
+    private function sendToEmail($address)
+    {
+        if (!$address) {
+            return;
+        }
+
+        $subject = "{$_SERVER['SITE_NAME']}: Ваш заказ";
+        $headers = "From: order@{$_SERVER['SITE_NAME']}.com\r\n" .
+                   "X-Mailer: PHP/" . phpversion();
+
+        mail($address, $subject, $this->makeEmailMessage(), $headers);
+    }
+
+    /**
      *
      */
     public function sendOrder()
     {
+        $this->sendToEmail($_POST['user-email']);
+        $this->sendToEmail($_SERVER['ORDER_EMAIL_ADDRESS']);
         $this->sendToTelegram();
     }
 
