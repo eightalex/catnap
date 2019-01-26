@@ -4,13 +4,13 @@
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 0;
+  padding: 7px 0;
   list-style: none;
   border-top: 1px solid #f1f1f1;
   border-bottom: 1px solid #f1f1f1; }
   .main-menu__link {
     display: flex;
-    padding: 10px 5px;
+    padding: 3px 5px 5px;
     color: #111;
     text-decoration: none;
     font-size: 15px; }
@@ -21,7 +21,8 @@
   .main-menu__item:not(:last-child) {
     margin-right: 20px; }
   .main-menu__item_active {
-    text-decoration: underline; }
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1); }
   @media (max-width: 700px) {
     .main-menu {
       flex-direction: column;
