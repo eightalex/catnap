@@ -58,6 +58,7 @@ class App
             '/cart'                => 'App\PageController@checkout',
             '/item/:num'           => 'App\PageController@item',
             '/api/sendOrder'       => 'App\OrderController@sendOrder',
+            '/api/getOrder'        => 'App\OrderController@getOrder',
             '/api/getNPCities'     => 'App\APIController@getNPCities',
             '/api/getNPWarehouses' => 'App\APIController@getNPWarehouses',
         ]);

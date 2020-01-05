@@ -17,15 +17,16 @@ class OrderController extends Controller
     /**
      * @return array
      */
-    private function getOrder()
+    public function getOrder()
     {
-        $order = json_decode($_COOKIE['order'], true) ?: [];
+        $order = json_decode($_GET['order'], true) ?: [];
         $pageRepository = new ItemRepository();
 
         foreach ($order as $itemId => $amount) {
             $item = $pageRepository->find($itemId);
 
             $order[] = [
+                'id'     => $item->id,
                 'title'  => $item->name,
                 'amount' => $amount,
                 'price'  => $item->price * $amount
@@ -34,6 +35,7 @@ class OrderController extends Controller
             unset($order[$itemId]);
         }
 
+        print_r(json_encode($order));
         return $order;
     }
 

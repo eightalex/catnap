@@ -8,8 +8,6 @@ var mainMenu = (function() {
         var slug = document.location.pathname.slice(1);
         var item = document.querySelector('[data-slug="' + slug + '"]');
 
-        console.log(item);
-
         if (item) {
             item.classList.add('main-menu__item_active');
         }

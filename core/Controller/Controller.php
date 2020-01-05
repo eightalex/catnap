@@ -44,7 +44,7 @@ abstract class Controller
 
     /**
      * @param array $styles
-     * @return null
+     * @return void
      */
     protected function renderStyles(array $styles = [])
     {
@@ -56,11 +56,15 @@ abstract class Controller
         }
     }
 
+    /**
+     * @param array $scripts
+     * @return void
+     */
     protected function renderScripts(array $scripts = [])
     {
         foreach ($scripts as $script)
         {
-            $this->renderBlock('bottom__script', [
+            $this->renderBlock('script', [
                 'script' => $script
             ]);
         }
@@ -78,6 +82,9 @@ abstract class Controller
         return $this->container;
     }
 
+    /**
+     * @return array
+     */
     protected function getCurrentPath()
     {
         $router = ContainerInjector::getContainer()->get(Router::class);

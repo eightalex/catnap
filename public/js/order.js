@@ -1,11 +1,13 @@
 var order = (function() {
 
-    var ROOT = '/';
-    var TWO_DAYS = 3600 * 24 * 2;
-
     function getOrder() {
-        var order = cookieEditor.get('order') || '{}';
+        var order = localStorage.getItem('userOrder') || '{}';
         return JSON.parse(order);
+    }
+
+    function getUserOrder() {
+        var order = localStorage.getItem('userOrder') || '{}';
+        return axios.get('/api/getOrder?order=' + order);
     }
 
     function setOrder(args) {
@@ -40,11 +42,7 @@ var order = (function() {
             }
         }
 
-        cookieEditor.set('order', JSON.stringify(order), {
-            path: ROOT,
-            expires: TWO_DAYS
-        });
-
+        localStorage.setItem('userOrder', JSON.stringify(order));
         mainMenu.publish('updateCartCounter');
     }
 
@@ -58,28 +56,32 @@ var order = (function() {
         xhr.send(formData);
     }
 
+    function getOrderSize() {
+        var order = getOrder();
+        var size = 0;
+
+        for (var key in order) {
+            if (order.hasOwnProperty(key)) {
+                size += parseInt(order[key], 10);
+            }
+        }
+
+        return size;
+    }
+
     return {
-        init: function() {
+        getUserOrder,
+        getOrderSize,
+        init() {
+            var jsOrder = document.querySelector('.js-order');
+
             mediator.installTo(order);
             mediator.subscribe('setOrder', setOrder);
 
-            if (window.location.pathname === '/cart') {
-                document.querySelector('.js-order').addEventListener('click', sendOrder);
+            if (window.location.pathname === '/cart' && jsOrder) {
+                jsOrder.addEventListener('click', sendOrder);
             }
         },
-
-        getOrderSize: function() {
-            var order = getOrder();
-            var size = 0;
-
-            for (var key in order) {
-                if (order.hasOwnProperty(key)) {
-                    size += parseInt(order[key], 10);
-                }
-            }
-
-            return size;
-        }
     };
 })();
 

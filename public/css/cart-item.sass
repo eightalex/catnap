@@ -1,0 +1,99 @@
+.cart-item
+    position: relative
+    display: flex
+
+    & + &
+        margin-top: 20px
+
+    &__img
+        overflow: hidden
+        display: flex
+        flex-shrink: 0
+        margin: 0
+        width: 80px
+        height: 80px
+        font-size: 0
+
+        img
+            width: 100%
+            object-fit: cover
+
+    &__block
+
+        &_second
+            margin-left: 20px
+            max-width: 355px
+
+        &_third
+            align-self: center
+            margin-left: auto
+            margin-right: 20px
+
+    &__title
+        display: block
+        max-width: 500px
+        color: #2f77aa
+        font-size: 18px
+        text-decoration: none
+
+        &:hover
+            opacity: 0.7
+
+    &__description
+        display: block
+        margin: 3px 0 0
+        font-size: 14px
+        opacity: 0.6
+
+    &__summary
+        display: block
+        margin-top: 5px
+        font-style: normal
+        white-space: nowrap
+        font-size: 16px
+
+    &__price
+        display: block
+        margin-top: 5px
+        color: #a4a4a4
+        font-size: 12px
+        font-style: normal
+        text-align: center
+
+    &__remove
+        position: relative
+        flex-shrink: 0
+        align-self: center
+        margin-bottom: 18px
+        padding: 0
+        width: 25px
+        height: 25px
+        color: #a4a4a4
+        outline: none
+        border-radius: 50%
+        border: 1px solid currentColor
+        background: none
+        cursor: pointer
+
+        &:hover
+            opacity: 0.7
+
+        &:focus
+            outline: none
+            box-shadow: 0 0 5px rgba(#a4a4a4, 0.8)
+
+        &::before,
+        &::after
+            position: absolute
+            top: 4px
+            left: 11px
+            width: 1px
+            height: 15px
+            background-color: currentColor
+            content: ''
+
+        &::before
+            transform: rotate(-45deg)
+
+        &::after
+            transform: rotate(45deg)
