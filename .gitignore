@@ -1,8 +1,7 @@
 .idea/
 vendor/
 node_modules/
+public/css/
 public/img/item/
-public/css/*.css
-public/css/*.map
 .env
 package-lock.json

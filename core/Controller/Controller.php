@@ -43,20 +43,6 @@ abstract class Controller
     }
 
     /**
-     * @param array $styles
-     * @return void
-     */
-    protected function renderStyles(array $styles = [])
-    {
-        foreach ($styles as $style)
-        {
-            $this->renderBlock('head__link_stylesheet', [
-                'style' => $style
-            ]);
-        }
-    }
-
-    /**
      * @param array $scripts
      * @return void
      */

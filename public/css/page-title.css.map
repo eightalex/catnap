@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,WAAW;EACH,uEAA+D;EAEnE,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,WAAW;EACpB,KAAK,EAAE,IAAI;EACX,WAAW,EAAE,yBAAyB;EACtC,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,MAAM;EACnB,UAAU,EAAE,MAAM;EAElB,yBAAyB;IAX7B,WAAW;MAYH,SAAS,EAAE,IAAI",
-"sources": ["page-title.sass"],
-"names": [],
-"file": "page-title.css"
-}
