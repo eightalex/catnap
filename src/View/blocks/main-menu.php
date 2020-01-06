@@ -1,5 +1,5 @@
 <menu class="main-menu">
-    <li class="main-menu__item">
+    <li class="main-menu__item active">
         <a class="main-menu__link" href="/">Главная</a>
     </li>
     <li class="main-menu__item">
@@ -15,9 +15,6 @@
         <a class="main-menu__link" href="/contact-us">Контакты</a>
     </li>
     <li class="main-menu__item">
-        <a class="main-menu__link cart-counter js-cart-counter"
-           href="/cart"
-           data-slug="cart"
-           data-counter="0">Корзина</a>
+        <cart-counter class="main-menu__link" href="/cart">Корзина</cart-counter>
     </li>
 </menu>

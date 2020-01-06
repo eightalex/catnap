@@ -48,6 +48,10 @@
 </template>
 
 <script>
+    import Order from "../services/Order";
+
+    const order = new Order();
+
     export default {
         name: 'Cart',
 
@@ -60,7 +64,6 @@
         beforeCreate() {
             order.getUserOrder()
                 .then(result => {
-                    console.log(result.data);
                     this.userOrder = Object.assign({}, this.userOrder, result.data)
                 })
                 .catch(console.error);

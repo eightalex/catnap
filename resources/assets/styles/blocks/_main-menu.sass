@@ -10,6 +10,15 @@
     border-top: 1px solid #f1f1f1
     border-bottom: 1px solid #f1f1f1
 
+    &__item
+
+        &:not(:last-child)
+            margin-right: 20px
+
+        &.active
+            border-radius: 3px
+            background-color: rgba(#000, 0.1)
+
     &__link
         display: flex
         padding: 3px 5px 5px
@@ -22,15 +31,6 @@
 
         &:hover
             color: #999
-
-    &__item
-
-        &:not(:last-child)
-            margin-right: 20px
-
-        &_active
-            border-radius: 3px
-            background-color: rgba(#000, 0.1)
 
     @media (max-width: $breakpoint)
         flex-direction: column
